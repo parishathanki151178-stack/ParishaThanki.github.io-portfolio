@@ -1,0 +1,2318 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Parisha Thanki — Cyber-Atelier Portfolio fusing M.Sc. Data Science, B.Sc. IT Engineering from Marwadi University, Social Media Strategy at Orscope Technologies, and Fine Art & Visual Design." />
+  <title>Parisha Thanki | Tech &times; Art Cyber-Atelier</title>
+
+  <!-- Google Fonts: Playfair Display (Artistic Serif), JetBrains Mono (Telemetry & Code), Plus Jakarta Sans (Clean Modern Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Configure Tailwind with class-based Dark Mode, studio typography, and Cyber-Atelier neon palette
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            atelier: {
+              950: '#070612',
+              900: '#100E24',
+              850: '#171433',
+              800: '#201B47',
+            },
+            vellum: {
+              50: '#FAF8F5',
+              100: '#F3EFE8',
+              200: '#E7E0D4',
+              ink: '#111022',
+            },
+            ncyan: '#00F5D4',
+            nmagenta: '#FF2E93',
+            nviolet: '#9D4EDD',
+            namber: '#FFB703',
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Immediate Theme Loader (Defaults to Neon Cyber-Atelier Dark Mode unless Gallery Light was saved) -->
+  <script>
+    (function () {
+      try {
+        const storedTheme = localStorage.getItem('pt-cyber-atelier-theme');
+        if (storedTheme === 'light') {
+          document.documentElement.classList.remove('dark');
+        } else {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (e) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+
+  <style>
+    /* ==================== CYBER-ATELIER DESIGN SYSTEM & ANIMATIONS ==================== */
+
+    /* 1. Ultra-Subtle Architectural Blueprint Grid Overlay (Fades smoothly toward edges) */
+    .cad-grid-bg {
+      background-size: 72px 72px;
+      background-image:
+        linear-gradient(to right, rgba(37, 99, 235, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(219, 39, 119, 0.03) 1px, transparent 1px);
+      -webkit-mask-image: radial-gradient(ellipse 76% 70% at 50% 35%, rgba(0, 0, 0, 0.9) 25%, transparent 82%);
+      mask-image: radial-gradient(ellipse 76% 70% at 50% 35%, rgba(0, 0, 0, 0.9) 25%, transparent 82%);
+    }
+
+    .dark .cad-grid-bg {
+      background-image:
+        linear-gradient(to right, rgba(0, 245, 212, 0.025) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(157, 78, 221, 0.025) 1px, transparent 1px);
+    }
+
+    /* 2. Elevated Glassmorphic Surfaces */
+    .atelier-glass {
+      background: rgba(255, 255, 255, 0.84);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .dark .atelier-glass {
+      background: rgba(16, 14, 36, 0.72);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    /* 3. Animated Multi-Stop Neon Gradient Text */
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .neon-gradient-flow {
+      background-size: 220% 220%;
+      animation: gradientShift 6s ease infinite;
+    }
+
+    .dark .hero-name-glow {
+      filter: drop-shadow(0 0 22px rgba(0, 245, 212, 0.25)) drop-shadow(0 0 32px rgba(255, 46, 147, 0.2));
+    }
+
+    /* 4. Animated RGB / Neon Rim Glow for Museum-Viewfinder Portrait Frame */
+    @keyframes spinNeonRim {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .rgb-rim-spinner {
+      background: conic-gradient(
+        from 0deg,
+        #00F5D4,
+        #9D4EDD,
+        #FF2E93,
+        #FFB703,
+        #00F5D4
+      );
+      animation: spinNeonRim 7s linear infinite;
+    }
+
+    /* 5. Floating Glassmorphic Badges */
+    @keyframes badgeFloatUp {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+
+    @keyframes badgeFloatDown {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(6px); }
+    }
+
+    .float-pill-top { animation: badgeFloatUp 4.4s ease-in-out infinite; }
+    .float-pill-bottom { animation: badgeFloatDown 4.9s ease-in-out infinite; }
+
+    /* 6. Ambient Drifting Painterly Neon Nebula Blobs */
+    @keyframes nebulaDrift {
+      0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+      33% { transform: translate3d(26px, -20px, 0) scale(1.05); }
+      66% { transform: translate3d(-22px, 16px, 0) scale(0.96); }
+    }
+
+    .nebula-1 { animation: nebulaDrift 17s ease-in-out infinite; }
+    .nebula-2 { animation: nebulaDrift 21s ease-in-out infinite reverse; }
+    .nebula-3 { animation: nebulaDrift 19s ease-in-out infinite 2.5s; }
+
+    /* 7. 3D Perspective Tilt Card + Cursor-Tracking Neon Border Specular Glow */
+    .tilt-card {
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s ease, border-color 0.28s ease;
+    }
+
+    .tilt-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.5px;
+      background: radial-gradient(
+        320px circle at var(--mx, 50%) var(--my, 50%),
+        rgba(0, 245, 212, 0.55),
+        rgba(255, 46, 147, 0.35) 45%,
+        transparent 75%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      pointer-events: none;
+    }
+
+    .tilt-card:hover::after {
+      opacity: 1;
+    }
+
+    /* 8. Custom Neon Range Sliders for Algorithmic Trading HUD */
+    input[type="range"].cyber-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 8px;
+      border-radius: 9999px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    input[type="range"].slider-cyan {
+      background: linear-gradient(90deg, #00F5D4 0%, #9D4EDD 100%);
+    }
+
+    input[type="range"].slider-magenta {
+      background: linear-gradient(90deg, #FF2E93 0%, #FFB703 100%);
+    }
+
+    input[type="range"].slider-violet {
+      background: linear-gradient(90deg, #9D4EDD 0%, #00F5D4 100%);
+    }
+
+    input[type="range"].cyber-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 9999px;
+      background: #070612;
+      border: 3px solid #00F5D4;
+      box-shadow: 0 0 14px rgba(0, 245, 212, 0.85);
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    input[type="range"].slider-magenta::-webkit-slider-thumb {
+      border-color: #FF2E93;
+      box-shadow: 0 0 14px rgba(255, 46, 147, 0.85);
+    }
+
+    input[type="range"].slider-violet::-webkit-slider-thumb {
+      border-color: #FFB703;
+      box-shadow: 0 0 14px rgba(255, 183, 3, 0.85);
+    }
+
+    input[type="range"].cyber-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+    }
+
+    input[type="range"].cyber-slider::-moz-range-thumb {
+      width: 22px;
+      height: 22px;
+      border-radius: 9999px;
+      background: #070612;
+      border: 3px solid #00F5D4;
+      box-shadow: 0 0 14px rgba(0, 245, 212, 0.85);
+      cursor: pointer;
+    }
+
+    /* 9. Scroll-Triggered Staggered Reveal Animations */
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: var(--stagger, 0ms);
+    }
+
+    .reveal-item.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body class="bg-vellum-50 text-vellum-ink dark:bg-atelier-950 dark:text-slate-100 font-sans antialiased selection:bg-ncyan/30 selection:text-atelier-950 dark:selection:bg-nmagenta/35 dark:selection:text-ncyan transition-colors duration-300 overflow-x-hidden">
+
+  <!-- ==================== TOP SCROLL PROGRESS BAR (3PX NEON SPECTRUM) ==================== -->
+  <div aria-hidden="true" class="fixed top-0 left-0 right-0 h-[3px] z-[70] pointer-events-none">
+    <div
+      id="scroll-progress"
+      class="h-full w-0 bg-gradient-to-r from-ncyan via-nviolet via-50% via-nmagenta to-namber shadow-[0_0_12px_rgba(0,245,212,0.85)] transition-[width] duration-75 ease-out"
+    ></div>
+  </div>
+
+  <!-- ==================== CUSTOM NEON CURSOR AURA (POINTER DEVICES) ==================== -->
+  <div
+    id="cursor-aura"
+    aria-hidden="true"
+    class="pointer-events-none fixed top-0 left-0 w-[28rem] h-[28rem] -translate-x-1/2 -translate-y-1/2 rounded-full z-30 opacity-0 dark:opacity-100 transition-opacity duration-300 hidden md:block"
+    style="background: radial-gradient(circle, rgba(0,245,212,0.10) 0%, rgba(255,46,147,0.06) 40%, rgba(157,78,221,0.03) 64%, transparent 76%);"
+  ></div>
+
+  <!-- ==================== ARCHITECTURAL CAD GRID + PAINTERLY NEON WASHES ==================== -->
+  <div aria-hidden="true" class="fixed inset-0 -z-20 overflow-hidden pointer-events-none cad-grid-bg">
+    <!-- Dark Mode: Obsidian-Indigo Canvas with Luminous Neon Washes -->
+    <div class="hidden dark:block nebula-1 absolute -top-32 -left-24 w-[36rem] h-[36rem] rounded-full bg-nviolet/20 blur-[140px]"></div>
+    <div class="hidden dark:block nebula-2 absolute top-[18%] -right-28 w-[34rem] h-[34rem] rounded-full bg-nmagenta/16 blur-[140px]"></div>
+    <div class="hidden dark:block nebula-3 absolute top-[54%] -left-24 w-[34rem] h-[34rem] rounded-full bg-ncyan/14 blur-[140px]"></div>
+    <div class="hidden dark:block nebula-1 absolute bottom-[-5rem] right-[14%] w-[32rem] h-[32rem] rounded-full bg-namber/12 blur-[140px]"></div>
+
+    <!-- Light Mode: Daylight Gallery Blueprint with Vibrant Cobalt, Magenta, Teal & Amber Washes -->
+    <div class="dark:hidden nebula-1 absolute -top-28 -left-24 w-[35rem] h-[35rem] rounded-full bg-blue-500/15 blur-[130px]"></div>
+    <div class="dark:hidden nebula-2 absolute top-[16%] -right-24 w-[33rem] h-[33rem] rounded-full bg-pink-500/15 blur-[130px]"></div>
+    <div class="dark:hidden nebula-3 absolute top-[50%] left-[8%] w-[32rem] h-[32rem] rounded-full bg-teal-400/15 blur-[130px]"></div>
+    <div class="dark:hidden nebula-1 absolute bottom-[-5rem] right-[15%] w-[31rem] h-[31rem] rounded-full bg-amber-400/18 blur-[130px]"></div>
+  </div>
+
+  <!-- ==================== 2. STICKY GLASSMORPHIC NAVIGATION ==================== -->
+  <header class="sticky top-0 z-50 atelier-glass border-b border-blue-600/15 dark:border-ncyan/15 transition-colors duration-300">
+    <nav aria-label="Primary Navigation" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-18 flex items-center justify-between gap-4">
+
+      <!-- Brand Mark: 'PT.' with Neon Cyan-to-Magenta Gradient Dot & Monospace Subtitle '// TECH × ART' -->
+      <a href="#top" class="flex items-center gap-3 group focus:outline-none">
+        <span class="relative w-9 h-9 rounded-xl bg-atelier-950 dark:bg-atelier-900 border border-ncyan/50 flex items-center justify-center font-serif font-extrabold text-base text-white shadow-[0_0_16px_rgba(0,245,212,0.28)] group-hover:shadow-[0_0_22px_rgba(255,46,147,0.5)] transition-all">
+          PT<span class="bg-gradient-to-tr from-ncyan to-nmagenta bg-clip-text text-transparent">.</span>
+          <span class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-gradient-to-r from-ncyan to-nmagenta shadow-[0_0_8px_#00F5D4]"></span>
+        </span>
+        <div class="flex flex-col">
+          <span class="font-serif text-base sm:text-lg font-bold tracking-tight leading-none text-vellum-ink dark:text-white">
+            Parisha Thanki
+          </span>
+          <span class="mt-0.5 font-mono text-[10px] sm:text-[11px] font-semibold tracking-wider text-teal-700 dark:text-ncyan">
+            // TECH &times; ART
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Smooth-Scroll Links -->
+      <div class="hidden md:flex items-center gap-1 lg:gap-1.5">
+        <a href="#about" class="px-3 py-2 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-ncyan hover:bg-ncyan/10 transition-colors">About</a>
+        <a href="#portrait" class="px-3 py-2 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-pink-600 dark:hover:text-nmagenta hover:bg-nmagenta/10 transition-colors">Portrait</a>
+        <a href="#predictor" class="px-3 py-2 rounded-xl text-sm font-semibold text-teal-700 dark:text-ncyan hover:bg-ncyan/10 transition-colors">ML Predictor</a>
+        <a href="#work" class="px-3 py-2 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-ncyan hover:bg-ncyan/10 transition-colors">Work &amp; Art</a>
+        <a href="#journey" class="px-3 py-2 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-ncyan hover:bg-ncyan/10 transition-colors">Journey</a>
+        <a href="#contact" class="px-3 py-2 rounded-xl text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-ncyan hover:bg-ncyan/10 transition-colors">Contact</a>
+      </div>
+
+      <!-- Theme Toggle Button (Neon Dark / Gallery Light) + Mobile Menu Button -->
+      <div class="flex items-center gap-2">
+        <button
+          id="theme-toggle"
+          type="button"
+          aria-label="Toggle Neon Dark or Gallery Light Mode"
+          title="Switch Neon Dark / Gallery Light Mode"
+          class="inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-blue-600/25 dark:border-ncyan/35 bg-white/90 dark:bg-atelier-900/90 text-vellum-ink dark:text-ncyan hover:border-pink-600 dark:hover:border-nmagenta shadow-sm transition-all cursor-pointer"
+        >
+          <!-- Sun Icon (Visible in Neon Dark Mode) -->
+          <svg class="w-4 h-4 hidden dark:block text-namber" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"></path>
+          </svg>
+          <!-- Moon Icon (Visible in Gallery Light Mode) -->
+          <svg class="w-4 h-4 block dark:hidden text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+          </svg>
+          <span id="theme-label" class="hidden sm:inline font-mono text-[11px] font-semibold">Neon Dark</span>
+        </button>
+
+        <!-- Mobile Menu Drawer Button -->
+        <button
+          id="mobile-menu-btn"
+          type="button"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Toggle Mobile Navigation"
+          class="md:hidden p-2.5 rounded-xl border border-blue-600/25 dark:border-ncyan/35 bg-white/90 dark:bg-atelier-900/90 text-vellum-ink dark:text-slate-100 hover:border-nmagenta transition-colors cursor-pointer"
+        >
+          <svg id="icon-menu-open" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          <svg id="icon-menu-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-blue-600/15 dark:border-ncyan/15 atelier-glass px-4 py-4 space-y-1.5">
+      <a href="#about" class="mobile-nav-link block px-4 py-3 rounded-xl text-sm font-medium text-slate-800 dark:text-slate-200 hover:bg-ncyan/10">About</a>
+      <a href="#portrait" class="mobile-nav-link block px-4 py-3 rounded-xl text-sm font-medium text-slate-800 dark:text-slate-200 hover:bg-nmagenta/10">Portrait</a>
+      <a href="#predictor" class="mobile-nav-link block px-4 py-3 rounded-xl text-sm font-semibold text-teal-700 dark:text-ncyan hover:bg-ncyan/10">ML Predictor</a>
+      <a href="#work" class="mobile-nav-link block px-4 py-3 rounded-xl text-sm font-medium text-slate-800 dark:text-slate-200 hover:bg-ncyan/10">Work &amp; Art</a>
+      <a href="#journey" class="mobile-nav-link block px-4 py-3 rounded-xl text-sm font-medium text-slate-800 dark:text-slate-200 hover:bg-ncyan/10">Journey</a>
+      <a href="#contact" class="mobile-nav-link block px-4 py-3 rounded-xl text-sm font-medium text-slate-800 dark:text-slate-200 hover:bg-ncyan/10">Contact</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ==================== 3. HERO SECTION & INTERACTIVE DUAL-REALITY CANVAS ==================== -->
+    <section id="hero-section" class="relative overflow-hidden pt-10 pb-20 sm:pt-14 sm:pb-24 lg:pt-16 lg:pb-28 px-4 sm:px-6 lg:px-8">
+      <!-- Minimal, Low-Opacity Dual-Reality HTML5 Canvas (2 Silk Ribbons + 14 Airy Constellation Nodes) -->
+      <canvas id="dual-reality-canvas" aria-hidden="true" class="absolute inset-0 w-full h-full opacity-80 pointer-events-none -z-10"></canvas>
+
+      <!-- Architectural CAD Corner Registration Crosshairs & Telemetry Bar -->
+      <div class="max-w-6xl mx-auto mb-8 flex flex-wrap items-center justify-between gap-3 font-mono text-[11px] text-slate-500 dark:text-slate-400">
+        <div class="flex items-center gap-2">
+          <span class="text-teal-600 dark:text-ncyan font-bold">+</span>
+          <span>[ 01 // TECH &times; ART CYBER-ATELIER ]</span>
+        </div>
+
+        <!-- Interactive Canvas Synthesis Mode Pill ('Mode: Fusion | Brush | Neural') -->
+        <div role="group" aria-label="Interactive Canvas Synthesis Mode" class="inline-flex items-center gap-1 p-1 rounded-full border border-blue-600/25 dark:border-ncyan/30 atelier-glass shadow-sm">
+          <span class="px-2.5 py-1 text-[10px] uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold">Mode:</span>
+          <button type="button" data-canvas-mode="fusion" class="canvas-mode-btn px-3 py-1 rounded-full text-[11px] font-bold bg-gradient-to-r from-ncyan to-nmagenta text-atelier-950 shadow-[0_0_12px_rgba(0,245,212,0.4)] transition-all cursor-pointer">
+            Fusion
+          </button>
+          <button type="button" data-canvas-mode="brush" class="canvas-mode-btn px-3 py-1 rounded-full text-[11px] font-semibold text-slate-700 dark:text-slate-300 hover:text-pink-600 dark:hover:text-nmagenta transition-all cursor-pointer">
+            Brush
+          </button>
+          <button type="button" data-canvas-mode="neural" class="canvas-mode-btn px-3 py-1 rounded-full text-[11px] font-semibold text-slate-700 dark:text-slate-300 hover:text-teal-600 dark:hover:text-ncyan transition-all cursor-pointer">
+            Neural
+          </button>
+        </div>
+
+        <div class="hidden sm:flex items-center gap-2">
+          <span id="hero-cursor-telemetry">COORD: [ 512 , 284 ]</span>
+          <span class="text-pink-600 dark:text-nmagenta font-bold">+</span>
+        </div>
+      </div>
+
+      <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+
+          <!-- Left Column (7 cols): Monospace Status Pill, Hybrid Headline, Concise Bio & Neon CTAs -->
+          <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+
+            <!-- Monospace Status Pill with Pulsing Neon Cyan Dot -->
+            <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-teal-600/35 dark:border-ncyan/45 atelier-glass shadow-[0_0_18px_rgba(0,245,212,0.16)]">
+              <span class="relative flex h-2.5 w-2.5">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-ncyan opacity-80"></span>
+                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-ncyan shadow-[0_0_10px_#00F5D4]"></span>
+              </span>
+              <span class="font-mono text-xs sm:text-[13px] font-bold tracking-wide text-teal-800 dark:text-ncyan">
+                M.SC. DATA SCIENCE &bull; ARTIST &amp; DESIGNER
+              </span>
+            </div>
+
+            <!-- Expressive Hybrid Headline -->
+            <div class="space-y-3">
+              <h1 class="font-serif text-4xl sm:text-6xl lg:text-[4.15rem] font-extrabold tracking-tight leading-[1.04]">
+                <span class="block neon-gradient-flow hero-name-glow bg-gradient-to-r from-blue-600 via-pink-600 via-50% to-teal-600 dark:from-ncyan dark:via-nviolet dark:via-45% dark:via-nmagenta dark:to-namber bg-clip-text text-transparent">
+                  Parisha Thanki
+                </span>
+              </h1>
+              <p class="text-xl sm:text-2xl lg:text-[1.72rem] font-semibold tracking-tight text-vellum-ink dark:text-white leading-snug">
+                Where <span class="font-mono text-teal-700 dark:text-ncyan font-bold">Algorithmic Precision</span> Meets
+                <span class="font-serif italic font-bold text-pink-600 dark:text-nmagenta">Painterly Imagination.</span>
+              </p>
+            </div>
+
+            <!-- Concise Bio Highlighting M.Sc. DS, B.Sc. IT at Marwadi University, 2023 Orscope Internship & Fine Art -->
+            <p class="max-w-2xl mx-auto lg:mx-0 text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+              Advancing through my <strong class="font-semibold text-vellum-ink dark:text-white">M.Sc. in Data Science</strong> atop a <strong class="font-semibold text-blue-700 dark:text-ncyan">B.Sc. IT foundation from Marwadi University</strong>, I design predictive machine learning models—including real-time share purchase latency estimation. Paired with my <strong class="font-semibold text-pink-700 dark:text-nmagenta">2023 Social Media Executive internship at Orscope Technologies</strong> and fine art practice, I craft intelligent systems with gallery-grade visual soul.
+            </p>
+
+            <!-- Primary & Secondary Neon CTAs -->
+            <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center lg:justify-start gap-4 pt-1">
+              <a
+                href="#predictor"
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-2xl bg-gradient-to-r from-blue-600 via-pink-600 to-amber-500 dark:from-ncyan dark:via-nviolet dark:to-nmagenta text-white dark:text-atelier-950 font-bold text-sm sm:text-base shadow-[0_0_25px_rgba(0,245,212,0.35)] hover:shadow-[0_0_34px_rgba(255,46,147,0.5)] transition-all duration-200 hover:-translate-y-0.5"
+              >
+                <span class="w-2 h-2 rounded-full bg-white dark:bg-atelier-950"></span>
+                <span>Test ML Latency Predictor</span>
+              </a>
+
+              <a
+                href="#about"
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-2xl border-2 border-teal-600/40 dark:border-ncyan/50 atelier-glass hover:border-pink-600 dark:hover:border-nmagenta text-vellum-ink dark:text-white font-semibold text-sm sm:text-base transition-all duration-200 hover:-translate-y-0.5"
+              >
+                <span>Explore Lab &amp; Studio</span>
+                <svg class="w-4 h-4 text-pink-600 dark:text-ncyan" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right Column (5 cols): Formal Portrait Frame — HUD Meets Museum Canvas -->
+          <div id="portrait" class="lg:col-span-5 scroll-mt-24">
+            <div class="relative mx-auto max-w-[21.5rem] sm:max-w-[23.5rem]">
+
+              <!-- Outer RGB / Neon Rim Glow -->
+              <div aria-hidden="true" class="absolute -inset-4 rounded-[2.4rem] bg-gradient-to-tr from-ncyan via-nviolet via-50% to-nmagenta opacity-40 dark:opacity-65 blur-2xl"></div>
+
+              <!-- Precision Neon-Cyan & Magenta Viewfinder Frame -->
+              <div class="relative p-[3px] rounded-[2rem] overflow-hidden shadow-[0_0_34px_rgba(157,78,221,0.35)]">
+                <!-- Animated Conic RGB Rim -->
+                <div aria-hidden="true" class="rgb-rim-spinner absolute -inset-[45%] pointer-events-none"></div>
+
+                <!-- Inner Museum Canvas + HUD Card -->
+                <div class="relative p-3.5 sm:p-4 rounded-[1.85rem] bg-white/95 dark:bg-atelier-900/95 backdrop-blur-xl">
+
+                  <!-- Top HUD Viewfinder Telemetry Header -->
+                  <div class="mb-2.5 px-1 flex items-center justify-between font-mono text-[10px] tracking-wider text-slate-500 dark:text-slate-400">
+                    <span class="text-teal-700 dark:text-ncyan font-bold">+ VIEWFINDER // 3:4</span>
+                    <span class="text-pink-600 dark:text-nmagenta font-bold">ISO 100 &bull; ATELIER +</span>
+                  </div>
+
+                  <!-- 3:4 Aspect Ratio Portrait Container with Corner Crosshairs '+' -->
+                  <div class="relative aspect-[3/4] w-full rounded-2xl overflow-hidden bg-gradient-to-br from-atelier-950 via-[#1B1344] to-[#082B3A] border border-ncyan/35 group">
+                    <!-- Corner Precision Crosshairs '+' -->
+                    <span aria-hidden="true" class="absolute top-2.5 left-2.5 z-20 font-mono text-xs font-bold text-ncyan drop-shadow-[0_0_6px_#00F5D4] pointer-events-none">+</span>
+                    <span aria-hidden="true" class="absolute top-2.5 right-2.5 z-20 font-mono text-xs font-bold text-nmagenta drop-shadow-[0_0_6px_#FF2E93] pointer-events-none">+</span>
+                    <span aria-hidden="true" class="absolute bottom-2.5 left-2.5 z-20 font-mono text-xs font-bold text-namber drop-shadow-[0_0_6px_#FFB703] pointer-events-none">+</span>
+                    <span aria-hidden="true" class="absolute bottom-2.5 right-2.5 z-20 font-mono text-xs font-bold text-ncyan drop-shadow-[0_0_6px_#00F5D4] pointer-events-none">+</span>
+
+                    <!-- Required img element: id="profile-img" src="profile.jpg" alt="Parisha Thanki Formal Portrait" -->
+                    <img
+                      id="profile-img"
+                      src="C:\Users\Sk\Pictures\pari vivo1818\IMG-20240129-WA0357.jpg"
+                      alt="Parisha Thanki Formal Portrait"
+                      class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+
+                    <!-- Graceful Fallback: Artistic Geometric-Meets-Brushstroke 'PT' Emblem -->
+                    <div id="profile-fallback" class="hidden absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-atelier-950 via-[#1B1142] to-[#09293A]">
+                      <!-- Custom SVG Geometric-Meets-Brushstroke 'PT' Emblem -->
+                      <svg class="w-36 h-36 mb-3" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <defs>
+                          <linearGradient id="ptBrushGrad" x1="20" y1="30" x2="160" y2="150" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#FF2E93" />
+                            <stop offset="50%" stop-color="#9D4EDD" />
+                            <stop offset="100%" stop-color="#00F5D4" />
+                          </linearGradient>
+                          <linearGradient id="ptGoldGrad" x1="30" y1="140" x2="150" y2="40" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#FFB703" />
+                            <stop offset="100%" stop-color="#00F5D4" />
+                          </linearGradient>
+                        </defs>
+                        <!-- Expressive Painterly Brushstroke Swirl -->
+                        <path d="M24 112 C 42 42, 134 26, 154 78 C 172 124, 96 164, 48 136" stroke="url(#ptBrushGrad)" stroke-width="14" stroke-linecap="round" stroke-opacity="0.75" />
+                        <path d="M36 62 C 84 24, 152 68, 134 128" stroke="url(#ptGoldGrad)" stroke-width="5" stroke-linecap="round" stroke-opacity="0.85" />
+                        <!-- Precision CAD Octagon & Crosshairs -->
+                        <polygon points="90,18 141,39 162,90 141,141 90,162 39,141 18,90 39,39" stroke="#00F5D4" stroke-width="1.5" stroke-dasharray="5 4" />
+                        <circle cx="90" cy="90" r="52" fill="#070612" fill-opacity="0.88" stroke="url(#ptBrushGrad)" stroke-width="2.5" />
+                        <line x1="90" y1="10" x2="90" y2="26" stroke="#00F5D4" stroke-width="1.5" />
+                        <line x1="90" y1="154" x2="90" y2="170" stroke="#00F5D4" stroke-width="1.5" />
+                        <line x1="10" y1="90" x2="26" y2="90" stroke="#FF2E93" stroke-width="1.5" />
+                        <line x1="154" y1="90" x2="170" y2="90" stroke="#FF2E93" stroke-width="1.5" />
+                        <!-- Monogram Typography -->
+                        <text x="90" y="101" text-anchor="middle" fill="#FFFFFF" font-family="'Playfair Display', Georgia, serif" font-weight="800" font-size="38" letter-spacing="-1">PT</text>
+                        <circle cx="122" cy="99" r="3.5" fill="#00F5D4" />
+                      </svg>
+
+                      <p class="font-serif text-lg font-bold text-white">Parisha Thanki</p>
+                      <p class="mt-1 font-mono text-[11px] text-slate-300">
+                        Place <span class="text-ncyan font-semibold">profile.jpg</span> in repo or preview below
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- Interactive 'Preview Your Photo' File Input Button Right Below the Frame -->
+                  <div class="mt-3 pt-3 border-t border-blue-600/15 dark:border-ncyan/20 flex items-center justify-between gap-2">
+                    <span id="portrait-status-tag" class="font-mono text-[11px] text-slate-600 dark:text-slate-300 truncate">
+                      SRC: profile.jpg
+                    </span>
+
+                    <button
+                      id="preview-photo-btn"
+                      type="button"
+                      class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-ncyan via-nviolet to-nmagenta text-atelier-950 dark:text-white font-mono text-xs font-bold shadow-[0_0_16px_rgba(0,245,212,0.3)] hover:scale-[1.03] transition-transform cursor-pointer shrink-0"
+                    >
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                      </svg>
+                      <span>Preview Your Photo</span>
+                    </button>
+
+                    <input id="portrait-file-input" type="file" accept="image/*" class="hidden" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Floating Badge 1: 'M.Sc. Data Science' -->
+              <div class="float-pill-top hidden sm:flex items-center gap-2 px-4 py-2 rounded-2xl border border-teal-600/40 dark:border-ncyan/60 atelier-glass shadow-[0_0_20px_rgba(0,245,212,0.28)] absolute -top-4 -left-6 z-20">
+                <span class="w-2.5 h-2.5 rounded-full bg-ncyan shadow-[0_0_8px_#00F5D4]"></span>
+                <span class="font-mono text-xs font-bold text-teal-800 dark:text-ncyan">M.Sc. Data Science</span>
+              </div>
+
+              <!-- Floating Badge 2: 'Visual Artist' -->
+              <div class="float-pill-bottom hidden sm:flex items-center gap-2 px-4 py-2 rounded-2xl border border-pink-600/40 dark:border-nmagenta/60 atelier-glass shadow-[0_0_20px_rgba(255,46,147,0.28)] absolute -bottom-4 -right-6 z-20">
+                <span class="w-2.5 h-2.5 rounded-full bg-nmagenta shadow-[0_0_8px_#FF2E93]"></span>
+                <span class="font-serif italic text-xs font-bold text-pink-700 dark:text-nmagenta">Visual Artist</span>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 4. ABOUT & DUAL-DISCIPLINE TOOLKIT ("THE LAB & THE STUDIO") ==================== -->
+    <section id="about" class="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-blue-600/15 dark:border-ncyan/15">
+      <div class="max-w-6xl mx-auto">
+
+        <!-- Section Header with CAD Telemetry Tag -->
+        <div class="reveal-item max-w-3xl mb-12 sm:mb-14">
+          <div class="flex items-center gap-2 font-mono text-xs sm:text-sm font-bold text-teal-700 dark:text-ncyan">
+            <span>+</span>
+            <span>[ 02 // THE LAB &amp; THE STUDIO ]</span>
+          </div>
+          <h2 class="mt-2 font-serif text-3xl sm:text-4xl font-bold tracking-tight text-vellum-ink dark:text-white">
+            Dual-Discipline Practice:
+            <span class="italic bg-gradient-to-r from-pink-600 via-purple-600 to-teal-600 dark:from-nmagenta dark:via-nviolet dark:to-ncyan bg-clip-text text-transparent">
+              Data Science Lab &times; Fine Art Studio
+            </span>
+          </h2>
+        </div>
+
+        <!-- Two-Column Narrative + 4 Neon Highlight Metric Cards -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start mb-16">
+
+          <!-- Left 5 Columns: Narrative Summary -->
+          <div class="reveal-item lg:col-span-5 space-y-5 text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed">
+            <p>
+              My journey bridges analytical precision and visual expression. During my <strong class="font-semibold text-vellum-ink dark:text-white">B.Sc. in Information Technology at Marwadi University</strong>, I architected software engineering, database, and web mini-projects that laid a disciplined computational foundation.
+            </p>
+            <p>
+              Building on that base in my <strong class="font-semibold text-blue-700 dark:text-ncyan">M.Sc. in Data Science</strong>, I specialize in predictive machine learning—most notably modeling financial order-book microstructure to forecast share purchase execution times in seconds.
+            </p>
+            <p>
+              Alongside my technical research, my <strong class="font-semibold text-pink-700 dark:text-nmagenta">6-month Social Media Executive internship at Orscope Technologies (2023)</strong> and my ongoing <strong class="font-semibold text-amber-700 dark:text-namber">acrylic painting and UI/UX design</strong> practice allow me to translate complex quantitative systems into human-centered visual stories.
+            </p>
+          </div>
+
+          <!-- Right 7 Columns: 4 Neon Highlight Metric Cards -->
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+
+            <!-- Metric Card 1: M.Sc. DS -->
+            <div style="--stagger: 60ms;" class="reveal-item tilt-card p-6 rounded-3xl border border-teal-600/30 dark:border-ncyan/40 atelier-glass shadow-sm hover:border-ncyan hover:shadow-[0_0_26px_rgba(0,245,212,0.22)]">
+              <div class="flex items-center justify-between font-mono text-[11px] text-teal-700 dark:text-ncyan mb-2">
+                <span>[ POSTGRAD // ML ]</span>
+                <span>+</span>
+              </div>
+              <div class="font-mono text-2xl sm:text-3xl font-extrabold text-teal-700 dark:text-ncyan">
+                M.Sc. DS
+              </div>
+              <h3 class="mt-2 text-base font-bold text-vellum-ink dark:text-white">Predictive Modeling &amp; ML</h3>
+              <p class="mt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Statistical regression, feature engineering, and sub-second financial latency modeling.
+              </p>
+            </div>
+
+            <!-- Metric Card 2: B.Sc. IT -->
+            <div style="--stagger: 130ms;" class="reveal-item tilt-card p-6 rounded-3xl border border-purple-600/30 dark:border-nviolet/45 atelier-glass shadow-sm hover:border-nviolet hover:shadow-[0_0_26px_rgba(157,78,221,0.22)]">
+              <div class="flex items-center justify-between font-mono text-[11px] text-purple-700 dark:text-purple-300 mb-2">
+                <span>[ UNDERGRAD // IT ]</span>
+                <span>+</span>
+              </div>
+              <div class="font-mono text-2xl sm:text-3xl font-extrabold text-purple-700 dark:text-purple-300">
+                B.Sc. IT
+              </div>
+              <h3 class="mt-2 text-base font-bold text-vellum-ink dark:text-white">Marwadi University + Mini Projects</h3>
+              <p class="mt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Relational databases, full-stack web apps, and algorithmic software mini-projects.
+              </p>
+            </div>
+
+            <!-- Metric Card 3: 6 Mos -->
+            <div style="--stagger: 200ms;" class="reveal-item tilt-card p-6 rounded-3xl border border-pink-600/30 dark:border-nmagenta/45 atelier-glass shadow-sm hover:border-nmagenta hover:shadow-[0_0_26px_rgba(255,46,147,0.22)]">
+              <div class="flex items-center justify-between font-mono text-[11px] text-pink-700 dark:text-nmagenta mb-2">
+                <span>[ INDUSTRY // 2023 ]</span>
+                <span>+</span>
+              </div>
+              <div class="font-mono text-2xl sm:text-3xl font-extrabold text-pink-700 dark:text-nmagenta">
+                6 Mos
+              </div>
+              <h3 class="mt-2 text-base font-bold text-vellum-ink dark:text-white">Orscope Technologies Internship &rsquo;23</h3>
+              <p class="mt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Social Media Executive driving visual campaigns, brand voice, and engagement analytics.
+              </p>
+            </div>
+
+            <!-- Metric Card 4: Fine Art -->
+            <div style="--stagger: 270ms;" class="reveal-item tilt-card p-6 rounded-3xl border border-amber-600/30 dark:border-namber/45 atelier-glass shadow-sm hover:border-namber hover:shadow-[0_0_26px_rgba(255,183,3,0.22)]">
+              <div class="flex items-center justify-between font-mono text-[11px] text-amber-700 dark:text-namber mb-2">
+                <span>[ ATELIER // STUDIO ]</span>
+                <span>+</span>
+              </div>
+              <div class="font-serif italic text-2xl sm:text-3xl font-extrabold text-amber-700 dark:text-namber">
+                Fine Art
+              </div>
+              <h3 class="mt-2 text-base font-bold text-vellum-ink dark:text-white">Acrylics, UI/UX &amp; Visual Brand</h3>
+              <p class="mt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Original canvas paintings, chromatic harmony, and expressive digital interfaces.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Categorized Tech × Art Skill Matrix with Neon Hover Pills -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+          <!-- Pillar 01: Data Science & Engineering -->
+          <div style="--stagger: 60ms;" class="reveal-item tilt-card rounded-3xl border border-teal-600/30 dark:border-ncyan/35 atelier-glass p-6 sm:p-7">
+            <span class="font-mono text-xs font-bold text-teal-700 dark:text-ncyan">01 // Data Science &amp; Engineering</span>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold bg-teal-500/10 dark:bg-ncyan/15 text-teal-900 dark:text-ncyan border border-teal-600/25 dark:border-ncyan/35 hover:scale-105 hover:shadow-[0_0_14px_rgba(0,245,212,0.45)] transition-all">Python</span>
+              <span class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold bg-teal-500/10 dark:bg-ncyan/15 text-teal-900 dark:text-ncyan border border-teal-600/25 dark:border-ncyan/35 hover:scale-105 hover:shadow-[0_0_14px_rgba(0,245,212,0.45)] transition-all">Machine Learning</span>
+              <span class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold bg-teal-500/10 dark:bg-ncyan/15 text-teal-900 dark:text-ncyan border border-teal-600/25 dark:border-ncyan/35 hover:scale-105 hover:shadow-[0_0_14px_rgba(0,245,212,0.45)] transition-all">Predictive Regression</span>
+              <span class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold bg-teal-500/10 dark:bg-ncyan/15 text-teal-900 dark:text-ncyan border border-teal-600/25 dark:border-ncyan/35 hover:scale-105 hover:shadow-[0_0_14px_rgba(0,245,212,0.45)] transition-all">SQL</span>
+              <span class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold bg-teal-500/10 dark:bg-ncyan/15 text-teal-900 dark:text-ncyan border border-teal-600/25 dark:border-ncyan/35 hover:scale-105 hover:shadow-[0_0_14px_rgba(0,245,212,0.45)] transition-all">Pandas &amp; Scikit-Learn</span>
+              <span class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold bg-teal-500/10 dark:bg-ncyan/15 text-teal-900 dark:text-ncyan border border-teal-600/25 dark:border-ncyan/35 hover:scale-105 hover:shadow-[0_0_14px_rgba(0,245,212,0.45)] transition-all">Feature Engineering</span>
+              <span class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold bg-teal-500/10 dark:bg-ncyan/15 text-teal-900 dark:text-ncyan border border-teal-600/25 dark:border-ncyan/35 hover:scale-105 hover:shadow-[0_0_14px_rgba(0,245,212,0.45)] transition-all">Web &amp; DB Mini-Projects</span>
+            </div>
+          </div>
+
+          <!-- Pillar 02: Quantitative & Viz Tech -->
+          <div style="--stagger: 140ms;" class="reveal-item tilt-card rounded-3xl border border-purple-600/30 dark:border-nviolet/40 atelier-glass p-6 sm:p-7">
+            <span class="font-mono text-xs font-bold text-purple-700 dark:text-purple-300">02 // Quantitative &amp; Viz Tech</span>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold bg-purple-500/10 dark:bg-nviolet/15 text-purple-900 dark:text-purple-200 border border-purple-600/25 dark:border-nviolet/35 hover:scale-105 hover:shadow-[0_0_14px_rgba(157,78,221,0.45)] transition-all">Market Microstructure</span>
+              <span class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold bg-purple-500/10 dark:bg-nviolet/15 text-purple-900 dark:text-purple-200 border border-purple-600/25 dark:border-nviolet/35 hover:scale-105 hover:shadow-[0_0_14px_rgba(157,78,221,0.45)] transition-all">Execution Latency Modeling</span>
+              <span class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold bg-purple-500/10 dark:bg-nviolet/15 text-purple-900 dark:text-purple-200 border border-purple-600/25 dark:border-nviolet/35 hover:scale-105 hover:shadow-[0_0_14px_rgba(157,78,221,0.45)] transition-all">Plotly &amp; Matplotlib</span>
+              <span class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold bg-purple-500/10 dark:bg-nviolet/15 text-purple-900 dark:text-purple-200 border border-purple-600/25 dark:border-nviolet/35 hover:scale-105 hover:shadow-[0_0_14px_rgba(157,78,221,0.45)] transition-all">Interactive Dashboards</span>
+              <span class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold bg-purple-500/10 dark:bg-nviolet/15 text-purple-900 dark:text-purple-200 border border-purple-600/25 dark:border-nviolet/35 hover:scale-105 hover:shadow-[0_0_14px_rgba(157,78,221,0.45)] transition-all">Social Analytics</span>
+            </div>
+          </div>
+
+          <!-- Pillar 03: Fine Art & Creative Design -->
+          <div style="--stagger: 220ms;" class="reveal-item tilt-card rounded-3xl border border-pink-600/30 dark:border-nmagenta/40 atelier-glass p-6 sm:p-7">
+            <span class="font-mono text-xs font-bold text-pink-700 dark:text-nmagenta">03 // Fine Art &amp; Creative Design</span>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold bg-pink-500/10 dark:bg-nmagenta/15 text-pink-900 dark:text-nmagenta border border-pink-600/25 dark:border-nmagenta/35 hover:scale-105 hover:shadow-[0_0_14px_rgba(255,46,147,0.45)] transition-all">Acrylic Painting</span>
+              <span class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold bg-amber-500/10 dark:bg-namber/15 text-amber-900 dark:text-namber border border-amber-600/25 dark:border-namber/35 hover:scale-105 hover:shadow-[0_0_14px_rgba(255,183,3,0.45)] transition-all">Color Theory &amp; Composition</span>
+              <span class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold bg-pink-500/10 dark:bg-nmagenta/15 text-pink-900 dark:text-nmagenta border border-pink-600/25 dark:border-nmagenta/35 hover:scale-105 hover:shadow-[0_0_14px_rgba(255,46,147,0.45)] transition-all">Visual Storytelling</span>
+              <span class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold bg-amber-500/10 dark:bg-namber/15 text-amber-900 dark:text-namber border border-amber-600/25 dark:border-namber/35 hover:scale-105 hover:shadow-[0_0_14px_rgba(255,183,3,0.45)] transition-all">Brand &amp; Social Campaigns</span>
+              <span class="px-3 py-1.5 rounded-xl text-xs sm:text-sm font-semibold bg-pink-500/10 dark:bg-nmagenta/15 text-pink-900 dark:text-nmagenta border border-pink-600/25 dark:border-nmagenta/35 hover:scale-105 hover:shadow-[0_0_14px_rgba(255,46,147,0.45)] transition-all">UI/UX &amp; Typography</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 5. INTERACTIVE SHARE PURCHASE EXECUTION TIME PREDICTOR ("ALGORITHMIC TRADING HUD") ==================== -->
+    <section id="predictor" class="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-blue-600/15 dark:border-ncyan/15">
+      <div class="max-w-6xl mx-auto">
+
+        <!-- Section Header -->
+        <div class="reveal-item max-w-3xl mb-10 sm:mb-12">
+          <div class="flex items-center gap-2 font-mono text-xs sm:text-sm font-bold text-teal-700 dark:text-ncyan">
+            <span>+</span>
+            <span>[ 03 // ALGORITHMIC TRADING HUD ]</span>
+          </div>
+          <h2 class="mt-2 font-serif text-3xl sm:text-4xl font-bold tracking-tight text-vellum-ink dark:text-white">
+            Share Purchase Execution Time Predictor
+          </h2>
+          <p class="mt-2.5 text-base sm:text-lg text-slate-700 dark:text-slate-300">
+            My signature M.Sc. Data Science project: predicting in how many seconds a stock buy order will execute from live order-book microstructure inputs, visualized with a real-time algorithmic + harmonic paint waveform.
+          </p>
+        </div>
+
+        <!-- Two-Panel Interactive Console -->
+        <div class="reveal-item rounded-3xl border border-teal-600/30 dark:border-ncyan/30 atelier-glass shadow-[0_0_45px_rgba(0,245,212,0.12)] overflow-hidden">
+          <!-- Neon Spectrum Top Border -->
+          <div class="h-1.5 w-full bg-gradient-to-r from-ncyan via-nviolet via-50% via-nmagenta to-namber"></div>
+
+          <div class="p-6 sm:p-8 lg:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+
+            <!-- Left Panel (6 cols): Custom Neon Range Sliders & Liquidity Tier Pills -->
+            <div class="lg:col-span-6 space-y-6">
+              <div class="flex items-center justify-between gap-2 pb-3 border-b border-blue-600/15 dark:border-ncyan/15">
+                <div>
+                  <span class="font-mono text-xs uppercase tracking-wider text-teal-700 dark:text-ncyan font-bold">
+                    INPUT VECTOR // ORDER BOOK
+                  </span>
+                  <h3 class="text-lg font-bold text-vellum-ink dark:text-white">Tune Microstructure Parameters</h3>
+                </div>
+                <button
+                  id="hud-reset-btn"
+                  type="button"
+                  class="px-3.5 py-2 rounded-xl border border-pink-600/40 dark:border-nmagenta/45 font-mono text-xs font-bold text-pink-700 dark:text-nmagenta hover:bg-nmagenta/10 transition-colors cursor-pointer"
+                >
+                  Reset HUD
+                </button>
+              </div>
+
+              <!-- Stock Liquidity Tier Selector ('Large-Cap', 'Mid-Cap', 'Small-Cap') -->
+              <div class="space-y-2.5">
+                <div class="flex items-center justify-between text-xs sm:text-sm font-medium">
+                  <span class="text-slate-700 dark:text-slate-300">Stock Liquidity Tier</span>
+                  <span id="readout-tier" class="font-mono font-bold text-teal-700 dark:text-ncyan">Large-Cap</span>
+                </div>
+                <div role="group" aria-label="Stock Liquidity Tier" class="grid grid-cols-3 gap-2 p-1.5 rounded-2xl bg-vellum-100 dark:bg-atelier-950 border border-blue-600/15 dark:border-ncyan/20">
+                  <button type="button" data-liquidity="large" class="liquidity-pill py-2.5 px-3 rounded-xl font-mono text-xs sm:text-sm font-bold bg-gradient-to-r from-ncyan to-blue-500 text-atelier-950 shadow-[0_0_15px_rgba(0,245,212,0.4)] transition-all cursor-pointer">
+                    Large-Cap
+                  </button>
+                  <button type="button" data-liquidity="mid" class="liquidity-pill py-2.5 px-3 rounded-xl font-mono text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300 hover:text-purple-600 dark:hover:text-purple-300 transition-all cursor-pointer">
+                    Mid-Cap
+                  </button>
+                  <button type="button" data-liquidity="small" class="liquidity-pill py-2.5 px-3 rounded-xl font-mono text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300 hover:text-pink-600 dark:hover:text-nmagenta transition-all cursor-pointer">
+                    Small-Cap
+                  </button>
+                </div>
+              </div>
+
+              <!-- Slider 1: Order Size (Shares: 10 – 10,000) -->
+              <div class="space-y-2">
+                <div class="flex items-center justify-between text-xs sm:text-sm font-medium">
+                  <label for="input-shares" class="text-slate-700 dark:text-slate-300">Order Size (Shares)</label>
+                  <span id="readout-shares" class="font-mono font-bold text-teal-700 dark:text-ncyan">450 shares</span>
+                </div>
+                <input id="input-shares" type="range" min="10" max="10000" step="10" value="450" class="cyber-slider slider-cyan" />
+                <div class="flex justify-between font-mono text-[11px] text-slate-500 dark:text-slate-400">
+                  <span>10</span>
+                  <span>5,000</span>
+                  <span>10,000</span>
+                </div>
+              </div>
+
+              <!-- Slider 2: Market Volatility Index (VIX: 10 – 65) -->
+              <div class="space-y-2">
+                <div class="flex items-center justify-between text-xs sm:text-sm font-medium">
+                  <label for="input-vix" class="text-slate-700 dark:text-slate-300">Market Volatility Index (VIX)</label>
+                  <span id="readout-vix" class="font-mono font-bold text-pink-700 dark:text-nmagenta">16.0 VIX</span>
+                </div>
+                <input id="input-vix" type="range" min="10" max="65" step="1" value="16" class="cyber-slider slider-magenta" />
+                <div class="flex justify-between font-mono text-[11px] text-slate-500 dark:text-slate-400">
+                  <span>10 (Calm)</span>
+                  <span>35 (Elevated)</span>
+                  <span>65 (Turbulent)</span>
+                </div>
+              </div>
+
+              <!-- Slider 3: Bid-Ask Spread (bps: 1 – 50) -->
+              <div class="space-y-2">
+                <div class="flex items-center justify-between text-xs sm:text-sm font-medium">
+                  <label for="input-bps" class="text-slate-700 dark:text-slate-300">Bid-Ask Spread (bps)</label>
+                  <span id="readout-bps" class="font-mono font-bold text-amber-700 dark:text-namber">6 bps</span>
+                </div>
+                <input id="input-bps" type="range" min="1" max="50" step="1" value="6" class="cyber-slider slider-violet" />
+                <div class="flex justify-between font-mono text-[11px] text-slate-500 dark:text-slate-400">
+                  <span>1 bps (Tight)</span>
+                  <span>25 bps (Moderate)</span>
+                  <span>50 bps (Wide)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Panel (6 cols): Neon Digital Display + Dual Tech×Art Waveform Canvas + 4-Segment Bar -->
+            <div class="lg:col-span-6">
+              <div class="p-6 sm:p-7 rounded-3xl bg-atelier-950 text-white border border-ncyan/35 shadow-[0_0_30px_rgba(0,245,212,0.14)] space-y-5">
+
+                <!-- Header Row & Dynamic Status Pill -->
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <span class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-ncyan font-bold">
+                    <span class="w-2 h-2 rounded-full bg-ncyan animate-ping"></span>
+                    PREDICTED BUY EXECUTION
+                  </span>
+                  <span id="hud-status-pill" class="px-3.5 py-1 rounded-full font-mono text-xs font-bold bg-ncyan/15 text-ncyan border border-ncyan/45 shadow-[0_0_12px_rgba(0,245,212,0.3)]">
+                    ULTRA-FAST FILL
+                  </span>
+                </div>
+
+                <!-- Large Neon Digital Readout ('0.64 s') + 95% Confidence Interval ('± 0.11 s') -->
+                <div class="flex flex-wrap items-baseline justify-between gap-4">
+                  <span id="hud-seconds-display" class="font-mono text-5xl sm:text-6xl font-extrabold tracking-tight text-ncyan drop-shadow-[0_0_22px_rgba(0,245,212,0.6)]">
+                    0.64 s
+                  </span>
+                  <div class="font-mono text-xs sm:text-sm">
+                    <span class="block text-[10px] uppercase tracking-wider text-namber font-semibold">95% Confidence Interval</span>
+                    <span id="hud-ci-display" class="text-white font-bold text-base">&plusmn; 0.11 s</span>
+                  </div>
+                </div>
+
+                <!-- Live Animated Tech × Art Waveform Canvas (Order-Book Curve + Harmonic Neon Paint Wave) -->
+                <div class="rounded-2xl border border-nviolet/35 bg-[#05040D] p-3 space-y-1.5">
+                  <div class="flex items-center justify-between font-mono text-[10px] text-slate-400">
+                    <span>ORDER-BOOK CURVE &times; HARMONIC PAINT WAVE</span>
+                    <span id="wave-telemetry-tag" class="text-nmagenta font-semibold">FREQ: HIGH // AMP: TIGHT</span>
+                  </div>
+                  <div class="w-full h-24 relative overflow-hidden rounded-xl">
+                    <canvas id="predictor-waveform-canvas" class="w-full h-full block"></canvas>
+                  </div>
+                </div>
+
+                <!-- 4-Segment Neon Latency Attribution Bar -->
+                <div class="pt-1 space-y-3">
+                  <div class="flex items-center justify-between font-mono text-xs">
+                    <span class="text-slate-300 uppercase tracking-wider">Latency Attribution</span>
+                    <span class="text-ncyan font-bold">100% SHAP Weight</span>
+                  </div>
+
+                  <div class="w-full h-3.5 rounded-full bg-atelier-850 overflow-hidden flex gap-0.5 p-0.5 border border-white/10">
+                    <div id="seg-volume" class="h-full rounded-l-full bg-ncyan shadow-[0_0_10px_#00F5D4] transition-all duration-200" style="width: 26%;"></div>
+                    <div id="seg-volatility" class="h-full bg-nmagenta shadow-[0_0_10px_#FF2E93] transition-all duration-200" style="width: 29%;"></div>
+                    <div id="seg-spread" class="h-full bg-namber shadow-[0_0_10px_#FFB703] transition-all duration-200" style="width: 23%;"></div>
+                    <div id="seg-liquidity" class="h-full rounded-r-full bg-nviolet shadow-[0_0_10px_#9D4EDD] transition-all duration-200" style="width: 22%;"></div>
+                  </div>
+
+                  <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 font-mono text-xs">
+                    <div class="p-2 rounded-xl bg-white/[0.04] border border-ncyan/25">
+                      <span class="flex items-center gap-1.5 text-[10px] text-slate-300">
+                        <span class="w-2 h-2 rounded-full bg-ncyan"></span>Order Volume
+                      </span>
+                      <span id="lbl-volume" class="mt-0.5 block font-bold text-ncyan">26%</span>
+                    </div>
+                    <div class="p-2 rounded-xl bg-white/[0.04] border border-nmagenta/25">
+                      <span class="flex items-center gap-1.5 text-[10px] text-slate-300">
+                        <span class="w-2 h-2 rounded-full bg-nmagenta"></span>Volatility
+                      </span>
+                      <span id="lbl-volatility" class="mt-0.5 block font-bold text-nmagenta">29%</span>
+                    </div>
+                    <div class="p-2 rounded-xl bg-white/[0.04] border border-namber/25">
+                      <span class="flex items-center gap-1.5 text-[10px] text-slate-300">
+                        <span class="w-2 h-2 rounded-full bg-namber"></span>Spread
+                      </span>
+                      <span id="lbl-spread" class="mt-0.5 block font-bold text-namber">23%</span>
+                    </div>
+                    <div class="p-2 rounded-xl bg-white/[0.04] border border-nviolet/25">
+                      <span class="flex items-center gap-1.5 text-[10px] text-slate-300">
+                        <span class="w-2 h-2 rounded-full bg-nviolet"></span>Liquidity Tier
+                      </span>
+                      <span id="lbl-liquidity" class="mt-0.5 block font-bold text-purple-300">22%</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== 6. FILTERABLE SHOWCASE ("SELECTED WORKS & ARTWORKS") ==================== -->
+    <section id="work" class="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-blue-600/15 dark:border-ncyan/15">
+      <div class="max-w-6xl mx-auto">
+
+        <!-- Section Header & Filter Buttons: 'All (4)', 'Tech & Data (2)', 'Art & Brand (2)' -->
+        <div class="reveal-item flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+          <div>
+            <div class="flex items-center gap-2 font-mono text-xs sm:text-sm font-bold text-pink-700 dark:text-nmagenta">
+              <span>+</span>
+              <span>[ 04 // SELECTED WORKS &amp; ARTWORKS ]</span>
+            </div>
+            <h2 class="mt-2 font-serif text-3xl sm:text-4xl font-bold tracking-tight text-vellum-ink dark:text-white">
+              Engineering Systems &amp; Studio Artworks
+            </h2>
+          </div>
+
+          <div role="tablist" aria-label="Filter selected works and artworks" class="inline-flex flex-wrap gap-2 p-1.5 rounded-2xl border border-blue-600/20 dark:border-ncyan/25 atelier-glass shadow-sm">
+            <button type="button" data-showcase-filter="all" class="showcase-filter-btn px-4 py-2 rounded-xl font-mono text-xs sm:text-sm font-bold bg-gradient-to-r from-ncyan via-nviolet to-nmagenta text-atelier-950 dark:text-white shadow-[0_0_16px_rgba(0,245,212,0.35)] transition-all cursor-pointer">
+              All (4)
+            </button>
+            <button type="button" data-showcase-filter="tech-data" class="showcase-filter-btn px-4 py-2 rounded-xl font-mono text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-teal-700 dark:hover:text-ncyan transition-all cursor-pointer">
+              Tech &amp; Data (2)
+            </button>
+            <button type="button" data-showcase-filter="art-brand" class="showcase-filter-btn px-4 py-2 rounded-xl font-mono text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-pink-700 dark:hover:text-nmagenta transition-all cursor-pointer">
+              Art &amp; Brand (2)
+            </button>
+          </div>
+        </div>
+
+        <!-- 4 Rich Project Cards -->
+        <div id="showcase-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+
+          <!-- Card 1: Share Purchase Execution Time Predictor [Tech & Data] -->
+          <article data-showcase-cat="tech-data" style="--stagger: 50ms;" class="reveal-item tilt-card showcase-card group flex flex-col justify-between rounded-3xl border border-teal-600/30 dark:border-ncyan/35 atelier-glass overflow-hidden shadow-sm hover:border-ncyan hover:shadow-[0_0_30px_rgba(0,245,212,0.22)]">
+            <div>
+              <!-- Custom SVG: Algorithmic Order-Book Schematic + Luminous Waveforms -->
+              <div class="h-48 relative overflow-hidden bg-atelier-950">
+                <svg class="w-full h-full" viewBox="0 0 480 200" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                  <defs>
+                    <linearGradient id="card1Curve" x1="25" y1="155" x2="455" y2="42" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stop-color="#FF2E93" />
+                      <stop offset="50%" stop-color="#9D4EDD" />
+                      <stop offset="100%" stop-color="#00F5D4" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M0 40H480M0 80H480M0 120H480M0 160H480M80 0V200M160 0V200M240 0V200M320 0V200M400 0V200" stroke="#00F5D4" stroke-opacity="0.12" />
+                  <rect x="44" y="118" width="16" height="54" rx="4" fill="#00F5D4" fill-opacity="0.72" />
+                  <rect x="74" y="92" width="16" height="80" rx="4" fill="#9D4EDD" fill-opacity="0.78" />
+                  <rect x="104" y="106" width="16" height="66" rx="4" fill="#FF2E93" fill-opacity="0.78" />
+                  <rect x="134" y="74" width="16" height="98" rx="4" fill="#FFB703" fill-opacity="0.82" />
+                  <path d="M25 154 C 115 144, 175 72, 252 88 C 328 104, 372 44, 455 44" stroke="url(#card1Curve)" stroke-width="3.5" stroke-linecap="round" />
+                  <circle cx="162" cy="96" r="5" fill="#FF2E93" stroke="#fff" stroke-width="2" />
+                  <circle cx="252" cy="88" r="5" fill="#FFB703" stroke="#fff" stroke-width="2" />
+                  <circle cx="388" cy="52" r="6.5" fill="#00F5D4" stroke="#fff" stroke-width="2" />
+                </svg>
+                <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-atelier-950/90 border border-ncyan/50 text-ncyan font-mono text-xs font-bold">
+                  Tech &amp; Data
+                </span>
+              </div>
+
+              <div class="p-6 sm:p-7">
+                <h3 class="text-xl font-bold text-vellum-ink dark:text-white group-hover:text-teal-700 dark:group-hover:text-ncyan transition-colors">
+                  Share Purchase Execution Time Predictor
+                </h3>
+                <p class="mt-2.5 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+                  ML regression pipeline estimating buy-order execution latency in seconds using order-book microstructure features including order volume, VIX volatility, bid-ask spread, and liquidity tier.
+                </p>
+                <div class="mt-5 flex flex-wrap gap-2">
+                  <span class="px-2.5 py-1 rounded-lg font-mono text-xs font-semibold bg-ncyan/15 text-teal-900 dark:text-ncyan border border-ncyan/30">Python</span>
+                  <span class="px-2.5 py-1 rounded-lg font-mono text-xs font-semibold bg-nviolet/15 text-purple-900 dark:text-purple-200 border border-nviolet/30">Scikit-Learn</span>
+                  <span class="px-2.5 py-1 rounded-lg font-mono text-xs font-semibold bg-namber/15 text-amber-900 dark:text-namber border border-namber/30">Microstructure ML</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="px-6 sm:px-7 py-4 border-t border-blue-600/15 dark:border-ncyan/15 flex items-center justify-between">
+              <a href="#predictor" class="font-mono text-xs sm:text-sm font-bold text-teal-700 dark:text-ncyan hover:underline">
+                Open Live HUD &uarr;
+              </a>
+              <span class="font-mono text-xs text-slate-500 dark:text-slate-400">M.Sc. Data Science</span>
+            </div>
+          </article>
+
+          <!-- Card 2: B.Sc. IT Mini-Projects Suite — Marwadi University [Tech & Data] -->
+          <article data-showcase-cat="tech-data" style="--stagger: 130ms;" class="reveal-item tilt-card showcase-card group flex flex-col justify-between rounded-3xl border border-purple-600/30 dark:border-nviolet/40 atelier-glass overflow-hidden shadow-sm hover:border-nviolet hover:shadow-[0_0_30px_rgba(157,78,221,0.22)]">
+            <div>
+              <!-- Custom SVG: Relational Database Cylinders + Web UI Blueprint Schematic -->
+              <div class="h-48 relative overflow-hidden bg-atelier-950">
+                <svg class="w-full h-full" viewBox="0 0 480 200" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                  <ellipse cx="102" cy="54" rx="44" ry="14" fill="#9D4EDD" fill-opacity="0.24" stroke="#9D4EDD" stroke-width="2" />
+                  <path d="M58 54 V 96 C 58 104, 146 104, 146 96 V 54" stroke="#9D4EDD" stroke-width="2" fill="#9D4EDD" fill-opacity="0.1" />
+                  <path d="M58 96 V 138 C 58 146, 146 146, 146 138 V 96" stroke="#00F5D4" stroke-width="2" fill="#00F5D4" fill-opacity="0.1" />
+                  <path d="M146 84 H 212 M 146 120 H 212" stroke="#FFB703" stroke-width="2" stroke-dasharray="4 4" />
+                  <rect x="212" y="34" width="224" height="132" rx="14" fill="#100E24" stroke="#00F5D4" stroke-width="1.8" />
+                  <circle cx="232" cy="52" r="4.5" fill="#FF2E93" />
+                  <circle cx="246" cy="52" r="4.5" fill="#FFB703" />
+                  <circle cx="260" cy="52" r="4.5" fill="#00F5D4" />
+                  <rect x="232" y="72" width="96" height="12" rx="6" fill="#00F5D4" />
+                  <rect x="232" y="94" width="154" height="10" rx="5" fill="#9D4EDD" fill-opacity="0.65" />
+                  <rect x="232" y="114" width="128" height="10" rx="5" fill="#FFB703" fill-opacity="0.7" />
+                  <rect x="232" y="136" width="84" height="14" rx="7" fill="#FF2E93" />
+                </svg>
+                <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-atelier-950/90 border border-nviolet/55 text-purple-300 font-mono text-xs font-bold">
+                  Tech &amp; Data
+                </span>
+              </div>
+
+              <div class="p-6 sm:p-7">
+                <h3 class="text-xl font-bold text-vellum-ink dark:text-white group-hover:text-purple-700 dark:group-hover:text-purple-300 transition-colors">
+                  B.Sc. IT Mini-Projects Suite &mdash; Marwadi University
+                </h3>
+                <p class="mt-2.5 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Full-stack web applications, relational database management systems, and software engineering mini-projects built during undergraduate studies at Marwadi University.
+                </p>
+                <div class="mt-5 flex flex-wrap gap-2">
+                  <span class="px-2.5 py-1 rounded-lg font-mono text-xs font-semibold bg-nviolet/15 text-purple-900 dark:text-purple-200 border border-nviolet/30">Full-Stack Web</span>
+                  <span class="px-2.5 py-1 rounded-lg font-mono text-xs font-semibold bg-ncyan/15 text-teal-900 dark:text-ncyan border border-ncyan/30">Relational SQL</span>
+                  <span class="px-2.5 py-1 rounded-lg font-mono text-xs font-semibold bg-namber/15 text-amber-900 dark:text-namber border border-namber/30">Software Engineering</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="px-6 sm:px-7 py-4 border-t border-blue-600/15 dark:border-nviolet/15 flex items-center justify-between">
+              <span class="font-mono text-xs sm:text-sm font-bold text-purple-700 dark:text-purple-300">Marwadi University</span>
+              <span class="font-mono text-xs text-slate-500 dark:text-slate-400">B.Sc. IT Suite</span>
+            </div>
+          </article>
+
+          <!-- Card 3: Orscope Technologies — Brand & Social Campaign Suite (2023) [Art & Brand] -->
+          <article data-showcase-cat="art-brand" style="--stagger: 210ms;" class="reveal-item tilt-card showcase-card group flex flex-col justify-between rounded-3xl border border-amber-600/30 dark:border-namber/40 atelier-glass overflow-hidden shadow-sm hover:border-namber hover:shadow-[0_0_30px_rgba(255,183,3,0.22)]">
+            <div>
+              <!-- Custom SVG: Creative Campaign Storyboard + Audience Engagement Telemetry -->
+              <div class="h-48 relative overflow-hidden bg-atelier-950">
+                <svg class="w-full h-full" viewBox="0 0 480 200" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                  <rect x="38" y="28" width="204" height="144" rx="16" fill="#100E24" stroke="#FFB703" stroke-width="1.8" />
+                  <circle cx="98" cy="82" r="28" fill="#FF2E93" fill-opacity="0.88" />
+                  <circle cx="122" cy="72" r="18" fill="#FFB703" fill-opacity="0.92" />
+                  <rect x="150" y="64" width="72" height="10" rx="5" fill="#FFFFFF" />
+                  <rect x="150" y="82" width="54" height="8" rx="4" fill="#00F5D4" />
+                  <path d="M62 144 L 100 124 L 136 130 L 176 102 L 218 88" stroke="#00F5D4" stroke-width="3" stroke-linecap="round" />
+                  <circle cx="218" cy="88" r="5" fill="#00F5D4" />
+                  <rect x="268" y="34" width="172" height="24" rx="12" fill="#FF2E93" />
+                  <rect x="268" y="66" width="172" height="24" rx="12" fill="#9D4EDD" />
+                  <rect x="268" y="98" width="172" height="24" rx="12" fill="#FFB703" />
+                  <rect x="268" y="130" width="172" height="24" rx="12" fill="#00F5D4" />
+                </svg>
+                <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-atelier-950/90 border border-namber/55 text-namber font-mono text-xs font-bold">
+                  Art &amp; Brand
+                </span>
+              </div>
+
+              <div class="p-6 sm:p-7">
+                <h3 class="text-xl font-bold text-vellum-ink dark:text-white group-hover:text-amber-700 dark:group-hover:text-namber transition-colors">
+                  Orscope Technologies &mdash; Brand &amp; Social Campaign Suite (2023)
+                </h3>
+                <p class="mt-2.5 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+                  6-month Social Media Executive internship delivering high-engagement visual campaigns, digital creatives, brand storytelling, and audience growth analytics.
+                </p>
+                <div class="mt-5 flex flex-wrap gap-2">
+                  <span class="px-2.5 py-1 rounded-lg font-mono text-xs font-semibold bg-namber/15 text-amber-900 dark:text-namber border border-namber/30">Visual Campaigns</span>
+                  <span class="px-2.5 py-1 rounded-lg font-mono text-xs font-semibold bg-nmagenta/15 text-pink-900 dark:text-nmagenta border border-nmagenta/30">Brand Storytelling</span>
+                  <span class="px-2.5 py-1 rounded-lg font-mono text-xs font-semibold bg-ncyan/15 text-teal-900 dark:text-ncyan border border-ncyan/30">Growth Analytics</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="px-6 sm:px-7 py-4 border-t border-blue-600/15 dark:border-namber/15 flex items-center justify-between">
+              <span class="font-serif italic text-sm font-bold text-amber-700 dark:text-namber">Orscope Technologies</span>
+              <span class="font-mono text-xs text-slate-500 dark:text-slate-400">6 Months &bull; 2023</span>
+            </div>
+          </article>
+
+          <!-- Card 4: Nocturne Seascape — Acrylic on Canvas & Algorithmic Palette [Art & Brand] -->
+          <article data-showcase-cat="art-brand" style="--stagger: 290ms;" class="reveal-item tilt-card showcase-card group flex flex-col justify-between rounded-3xl border border-pink-600/30 dark:border-nmagenta/40 atelier-glass overflow-hidden shadow-sm hover:border-nmagenta hover:shadow-[0_0_30px_rgba(255,46,147,0.24)]">
+            <div>
+              <!-- Custom High-Craft SVG Painting: Moonlit Dark Mountain + Luminous Silver-White Shoreline Wave -->
+              <div class="h-48 relative overflow-hidden bg-[#07080F]">
+                <svg class="w-full h-full" viewBox="0 0 480 200" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                  <defs>
+                    <linearGradient id="nocturneSky" x1="240" y1="0" x2="240" y2="95" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stop-color="#0B0D17" />
+                      <stop offset="65%" stop-color="#191D2E" />
+                      <stop offset="100%" stop-color="#272D42" />
+                    </linearGradient>
+                    <linearGradient id="silverShoreWave" x1="240" y1="92" x2="240" y2="200" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stop-color="#F8FAFC" stop-opacity="0.98" />
+                      <stop offset="48%" stop-color="#CBD5E1" stop-opacity="0.88" />
+                      <stop offset="100%" stop-color="#64748B" stop-opacity="0.45" />
+                    </linearGradient>
+                  </defs>
+                  <!-- Night Sky -->
+                  <rect x="0" y="0" width="480" height="96" fill="url(#nocturneSky)" />
+                  <!-- Warm Moon Orb & Soft Halo -->
+                  <circle cx="348" cy="36" r="7.5" fill="#FDE68A" />
+                  <circle cx="348" cy="36" r="18" fill="#FDE68A" fill-opacity="0.16" />
+                  <!-- Dark Mountain Silhouette -->
+                  <path d="M0 94 L 78 64 L 154 84 L 236 58 L 318 82 L 408 56 L 480 86 L 480 96 L 0 96 Z" fill="#11131F" />
+                  <path d="M195 94 L 236 58 L 268 94 Z" fill="#1B1F30" />
+                  <!-- Deep Obsidian Ocean Base -->
+                  <rect x="0" y="94" width="480" height="106" fill="#07080F" />
+                  <!-- Luminous Silver-White Shoreline Wave Winding Toward Viewer -->
+                  <path d="M188 94 C 242 104, 294 112, 262 125 C 222 140, 172 150, 224 164 C 274 178, 246 189, 208 200 L 278 200 C 314 187, 320 172, 270 158 C 220 144, 272 134, 308 121 C 334 110, 278 102, 232 94 Z" fill="url(#silverShoreWave)" />
+                  <!-- Fine Moonlight Ripple Highlights -->
+                  <path d="M214 112 H 264 M 202 148 H 256 M 224 176 H 276" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-opacity="0.85" />
+                </svg>
+                <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-atelier-950/90 border border-nmagenta/55 text-nmagenta font-mono text-xs font-bold">
+                  Art &amp; Brand
+                </span>
+              </div>
+
+              <div class="p-6 sm:p-7">
+                <h3 class="text-xl font-bold text-vellum-ink dark:text-white group-hover:text-pink-700 dark:group-hover:text-nmagenta transition-colors">
+                  Nocturne Seascape &mdash; Acrylic on Canvas &amp; Algorithmic Palette
+                </h3>
+                <p class="mt-2.5 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Original canvas painting capturing a moonlit mountain ridge and luminous silver-white shoreline wave, paired with interactive clickable hex color swatches extracted from the artwork.
+                </p>
+
+                <!-- Interactive Clickable Hex Color Swatches Extracted from the Artwork -->
+                <div class="mt-5 pt-4 border-t border-blue-600/15 dark:border-white/10">
+                  <div class="flex items-center justify-between font-mono text-[11px] mb-2.5">
+                    <span class="text-slate-500 dark:text-slate-400 uppercase tracking-wider">Extracted Pigment Swatches (Click to Copy)</span>
+                    <span id="active-swatch-readout" class="font-bold text-pink-700 dark:text-ncyan">#F8FAFC</span>
+                  </div>
+
+                  <div class="grid grid-cols-5 gap-2" role="group" aria-label="Extracted Nocturne Seascape Hex Color Swatches">
+                    <button type="button" data-hex="#07080F" data-name="Obsidian Tide" class="artwork-swatch-btn group/sw flex flex-col items-center gap-1 p-1.5 rounded-xl border border-slate-300/60 dark:border-white/15 bg-white/60 dark:bg-atelier-950/70 hover:border-ncyan transition-all cursor-pointer" title="Copy #07080F (Obsidian Tide)">
+                      <span class="w-full h-6 rounded-lg border border-white/20" style="background-color: #07080F;"></span>
+                      <span class="font-mono text-[10px] font-bold text-slate-700 dark:text-slate-300">#07080F</span>
+                    </button>
+
+                    <button type="button" data-hex="#191D2E" data-name="Midnight Ridge" class="artwork-swatch-btn group/sw flex flex-col items-center gap-1 p-1.5 rounded-xl border border-slate-300/60 dark:border-white/15 bg-white/60 dark:bg-atelier-950/70 hover:border-ncyan transition-all cursor-pointer" title="Copy #191D2E (Midnight Ridge)">
+                      <span class="w-full h-6 rounded-lg border border-white/20" style="background-color: #191D2E;"></span>
+                      <span class="font-mono text-[10px] font-bold text-slate-700 dark:text-slate-300">#191D2E</span>
+                    </button>
+
+                    <button type="button" data-hex="#64748B" data-name="Mist Slate" class="artwork-swatch-btn group/sw flex flex-col items-center gap-1 p-1.5 rounded-xl border border-slate-300/60 dark:border-white/15 bg-white/60 dark:bg-atelier-950/70 hover:border-ncyan transition-all cursor-pointer" title="Copy #64748B (Mist Slate)">
+                      <span class="w-full h-6 rounded-lg border border-white/20" style="background-color: #64748B;"></span>
+                      <span class="font-mono text-[10px] font-bold text-slate-700 dark:text-slate-300">#64748B</span>
+                    </button>
+
+                    <button type="button" data-hex="#F8FAFC" data-name="Silver Foam" class="artwork-swatch-btn group/sw flex flex-col items-center gap-1 p-1.5 rounded-xl border-2 border-ncyan bg-white/80 dark:bg-atelier-950/90 shadow-[0_0_10px_rgba(0,245,212,0.3)] transition-all cursor-pointer" title="Copy #F8FAFC (Silver Foam)">
+                      <span class="w-full h-6 rounded-lg border border-slate-300" style="background-color: #F8FAFC;"></span>
+                      <span class="font-mono text-[10px] font-bold text-teal-800 dark:text-ncyan">#F8FAFC</span>
+                    </button>
+
+                    <button type="button" data-hex="#FDE68A" data-name="Lunar Amber" class="artwork-swatch-btn group/sw flex flex-col items-center gap-1 p-1.5 rounded-xl border border-slate-300/60 dark:border-white/15 bg-white/60 dark:bg-atelier-950/70 hover:border-namber transition-all cursor-pointer" title="Copy #FDE68A (Lunar Amber)">
+                      <span class="w-full h-6 rounded-lg border border-white/20" style="background-color: #FDE68A;"></span>
+                      <span class="font-mono text-[10px] font-bold text-slate-700 dark:text-slate-300">#FDE68A</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="px-6 sm:px-7 py-4 border-t border-blue-600/15 dark:border-nmagenta/15 flex items-center justify-between">
+              <span class="font-serif italic text-sm font-bold text-pink-700 dark:text-nmagenta">Acrylic on Canvas</span>
+              <span class="font-mono text-xs text-slate-500 dark:text-slate-400">Algorithmic Palette</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 7. DUAL-TRACK JOURNEY TIMELINE ("EDUCATION, EXPERIENCE & STUDIO") ==================== -->
+    <section id="journey" class="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-blue-600/15 dark:border-ncyan/15">
+      <div class="max-w-4xl mx-auto">
+
+        <!-- Section Header -->
+        <div class="reveal-item max-w-2xl mb-12 sm:mb-14">
+          <div class="flex items-center gap-2 font-mono text-xs sm:text-sm font-bold text-purple-700 dark:text-ncyan">
+            <span>+</span>
+            <span>[ 05 // EDUCATION, EXPERIENCE &amp; STUDIO ]</span>
+          </div>
+          <h2 class="mt-2 font-serif text-3xl sm:text-4xl font-bold tracking-tight text-vellum-ink dark:text-white">
+            Dual-Track Journey Timeline
+          </h2>
+        </div>
+
+        <!-- Glowing Neon Vertical Spine Alternating Between Tech Nodes (Cyan/Violet) & Art/Creative Nodes (Magenta/Amber) -->
+        <div class="relative pl-8 sm:pl-11 space-y-8">
+          <div aria-hidden="true" class="absolute left-3 sm:left-4 top-2 bottom-2 w-1 rounded-full bg-gradient-to-b from-ncyan via-nmagenta via-50% via-nviolet to-namber shadow-[0_0_14px_rgba(0,245,212,0.45)]"></div>
+
+          <!-- Node 1 (Tech — Cyan): M.Sc. in Data Science -->
+          <div style="--stagger: 50ms;" class="reveal-item relative">
+            <span class="absolute -left-[2.2rem] sm:-left-[2.55rem] top-6 flex h-4 w-4">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-ncyan opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-4 w-4 bg-ncyan ring-4 ring-vellum-50 dark:ring-atelier-950 shadow-[0_0_12px_#00F5D4]"></span>
+            </span>
+            <div class="tilt-card p-6 sm:p-7 rounded-3xl border border-teal-600/30 dark:border-ncyan/40 atelier-glass shadow-sm hover:border-ncyan">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                <span class="px-3 py-1 rounded-full font-mono text-xs font-bold bg-ncyan/15 text-teal-900 dark:text-ncyan border border-ncyan/35">
+                  TECH TRACK // POSTGRADUATE
+                </span>
+                <span class="font-mono text-xs font-semibold text-teal-700 dark:text-ncyan">Current</span>
+              </div>
+              <h3 class="text-xl font-bold text-vellum-ink dark:text-white">M.Sc. in Data Science</h3>
+              <p class="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+                Machine Learning, Statistical Modeling &amp; Financial Latency Research—building quantitative predictive systems including the Share Purchase Execution Time Predictor.
+              </p>
+            </div>
+          </div>
+
+          <!-- Node 2 (Art & Brand — Magenta): Social Media Executive Intern — Orscope Technologies -->
+          <div style="--stagger: 130ms;" class="reveal-item relative">
+            <span class="absolute -left-[2.2rem] sm:-left-[2.55rem] top-6 flex h-4 w-4">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-nmagenta opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-4 w-4 bg-nmagenta ring-4 ring-vellum-50 dark:ring-atelier-950 shadow-[0_0_12px_#FF2E93]"></span>
+            </span>
+            <div class="tilt-card p-6 sm:p-7 rounded-3xl border border-pink-600/30 dark:border-nmagenta/40 atelier-glass shadow-sm hover:border-nmagenta">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                <span class="px-3 py-1 rounded-full font-mono text-xs font-bold bg-nmagenta/15 text-pink-900 dark:text-nmagenta border border-nmagenta/35">
+                  ART &amp; BRAND TRACK // 2023 &bull; 6 MONTHS
+                </span>
+                <span class="font-mono text-xs font-semibold text-pink-700 dark:text-nmagenta">Orscope Technologies</span>
+              </div>
+              <h3 class="text-xl font-bold text-vellum-ink dark:text-white">Social Media Executive Intern &mdash; Orscope Technologies</h3>
+              <p class="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+                Creative Campaign Design, Brand Storytelling &amp; Content Analytics—bridging visual aesthetics with audience growth telemetry across digital brand channels.
+              </p>
+            </div>
+          </div>
+
+          <!-- Node 3 (Tech — Violet): B.Sc. in Information Technology — Marwadi University -->
+          <div style="--stagger: 210ms;" class="reveal-item relative">
+            <span class="absolute -left-[2.2rem] sm:-left-[2.55rem] top-6 flex h-4 w-4">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-nviolet opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-4 w-4 bg-nviolet ring-4 ring-vellum-50 dark:ring-atelier-950 shadow-[0_0_12px_#9D4EDD]"></span>
+            </span>
+            <div class="tilt-card p-6 sm:p-7 rounded-3xl border border-purple-600/30 dark:border-nviolet/40 atelier-glass shadow-sm hover:border-nviolet">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                <span class="px-3 py-1 rounded-full font-mono text-xs font-bold bg-nviolet/15 text-purple-900 dark:text-purple-200 border border-nviolet/35">
+                  TECH TRACK // UNDERGRADUATE
+                </span>
+                <span class="font-mono text-xs font-semibold text-purple-700 dark:text-purple-300">Marwadi University</span>
+              </div>
+              <h3 class="text-xl font-bold text-vellum-ink dark:text-white">B.Sc. in Information Technology &mdash; Marwadi University</h3>
+              <p class="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+                Core Computer Science, Databases &amp; Software Mini-Projects—architecting relational schemas, full-stack web interfaces, and algorithmic applications.
+              </p>
+            </div>
+          </div>
+
+          <!-- Node 4 (Art — Amber): Independent Visual Artist & Designer -->
+          <div style="--stagger: 290ms;" class="reveal-item relative">
+            <span class="absolute -left-[2.2rem] sm:-left-[2.55rem] top-6 flex h-4 w-4">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-namber opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-4 w-4 bg-namber ring-4 ring-vellum-50 dark:ring-atelier-950 shadow-[0_0_12px_#FFB703]"></span>
+            </span>
+            <div class="tilt-card p-6 sm:p-7 rounded-3xl border border-amber-600/30 dark:border-namber/40 atelier-glass shadow-sm hover:border-namber">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                <span class="px-3 py-1 rounded-full font-mono text-xs font-bold bg-namber/15 text-amber-900 dark:text-namber border border-namber/35">
+                  STUDIO TRACK // ONGOING
+                </span>
+                <span class="font-mono text-xs font-semibold text-amber-700 dark:text-namber">Fine Art &amp; UI</span>
+              </div>
+              <h3 class="text-xl font-bold text-vellum-ink dark:text-white">Independent Visual Artist &amp; Designer</h3>
+              <p class="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+                Acrylic Painting, Digital Illustration &amp; Aesthetic Interface Design—crafting atmospheric nocturne seascapes and translating painterly color harmony into interactive UI.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 8. CONTACT & FOOTER (#contact) ==================== -->
+    <section id="contact" class="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-blue-600/15 dark:border-ncyan/15">
+      <div class="max-w-6xl mx-auto">
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+
+          <!-- Left Column (5 cols): Direct Copyable Email & Social Hub -->
+          <div class="reveal-item lg:col-span-5 space-y-6">
+            <div>
+              <div class="flex items-center gap-2 font-mono text-xs sm:text-sm font-bold text-teal-700 dark:text-ncyan">
+                <span>+</span>
+                <span>[ 06 // CONNECT WITH THE ATELIER ]</span>
+              </div>
+              <h2 class="mt-2 font-serif text-3xl sm:text-4xl font-bold tracking-tight text-vellum-ink dark:text-white">
+                Let’s Build &amp; Paint the Future Together.
+              </h2>
+              <p class="mt-3 text-slate-700 dark:text-slate-300 text-base leading-relaxed">
+                Open to Data Science &amp; ML opportunities, FinTech predictive modeling collaborations, brand &amp; social direction, and visual design commissions.
+              </p>
+            </div>
+
+            <!-- One-Click Copyable Email Card ('parisha.thanki@example.com' with Toast Notification) -->
+            <div class="tilt-card p-5 rounded-3xl border border-teal-600/30 dark:border-ncyan/40 atelier-glass shadow-[0_0_24px_rgba(0,245,212,0.1)] space-y-3">
+              <span class="block font-mono text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400">Direct Email Channel</span>
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <span id="email-text" class="font-mono text-sm sm:text-base font-bold text-vellum-ink dark:text-ncyan break-all">
+                  parisha.thanki@example.com
+                </span>
+                <button
+                  id="copy-email-btn"
+                  type="button"
+                  class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-ncyan to-nviolet text-atelier-950 dark:text-white font-mono text-xs font-bold shadow-[0_0_16px_rgba(0,245,212,0.35)] hover:scale-[1.03] transition-transform cursor-pointer"
+                >
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                  </svg>
+                  <span id="copy-email-label">Copy Email</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Social Links (GitHub, LinkedIn, Behance/Instagram) -->
+            <div class="space-y-2.5">
+              <span class="block font-mono text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400">Social &amp; Creative Nodes</span>
+              <div class="flex flex-wrap gap-3">
+                <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-purple-600/35 dark:border-nviolet/45 atelier-glass font-mono text-xs font-bold text-purple-800 dark:text-purple-200 hover:border-ncyan hover:shadow-[0_0_16px_rgba(157,78,221,0.35)] transition-all">
+                  <span>GitHub</span>
+                </a>
+                <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-teal-600/35 dark:border-ncyan/45 atelier-glass font-mono text-xs font-bold text-teal-800 dark:text-ncyan hover:border-nmagenta hover:shadow-[0_0_16px_rgba(0,245,212,0.35)] transition-all">
+                  <span>LinkedIn</span>
+                </a>
+                <a href="https://www.behance.net/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-pink-600/35 dark:border-nmagenta/45 atelier-glass font-mono text-xs font-bold text-pink-800 dark:text-nmagenta hover:border-namber hover:shadow-[0_0_16px_rgba(255,46,147,0.35)] transition-all">
+                  <span>Behance / Instagram</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column (7 cols): Neon Glass Contact Card with Validated Interactive Form -->
+          <div class="reveal-item lg:col-span-7">
+            <form id="contact-form" novalidate class="p-6 sm:p-8 rounded-3xl border border-purple-600/25 dark:border-ncyan/25 atelier-glass shadow-[0_0_35px_rgba(157,78,221,0.12)] space-y-5">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="sender-name" class="block font-mono text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
+                    Your Name
+                  </label>
+                  <input
+                    id="sender-name"
+                    name="name"
+                    type="text"
+                    required
+                    placeholder="e.g., Aarav Patel"
+                    class="w-full px-4 py-3 rounded-xl border border-blue-600/20 dark:border-ncyan/25 bg-white/90 dark:bg-atelier-950/90 text-vellum-ink dark:text-white text-sm focus:outline-none focus:border-ncyan focus:ring-2 focus:ring-ncyan/40 transition-all"
+                  />
+                </div>
+                <div>
+                  <label for="sender-email" class="block font-mono text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
+                    Email Address
+                  </label>
+                  <input
+                    id="sender-email"
+                    name="email"
+                    type="email"
+                    required
+                    placeholder="you@example.com"
+                    class="w-full px-4 py-3 rounded-xl border border-blue-600/20 dark:border-ncyan/25 bg-white/90 dark:bg-atelier-950/90 text-vellum-ink dark:text-white text-sm focus:outline-none focus:border-nmagenta focus:ring-2 focus:ring-nmagenta/40 transition-all"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label for="sender-topic" class="block font-mono text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
+                  Collaboration Track
+                </label>
+                <input
+                  id="sender-topic"
+                  name="topic"
+                  type="text"
+                  required
+                  placeholder="Data Science / FinTech ML / Art & Visual Design"
+                  class="w-full px-4 py-3 rounded-xl border border-blue-600/20 dark:border-ncyan/25 bg-white/90 dark:bg-atelier-950/90 text-vellum-ink dark:text-white text-sm focus:outline-none focus:border-nviolet focus:ring-2 focus:ring-nviolet/40 transition-all"
+                />
+              </div>
+
+              <div>
+                <label for="sender-message" class="block font-mono text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
+                  Message
+                </label>
+                <textarea
+                  id="sender-message"
+                  name="message"
+                  rows="4"
+                  required
+                  placeholder="Share details about your role, research project, or creative commission..."
+                  class="w-full px-4 py-3 rounded-xl border border-blue-600/20 dark:border-ncyan/25 bg-white/90 dark:bg-atelier-950/90 text-vellum-ink dark:text-white text-sm focus:outline-none focus:border-ncyan focus:ring-2 focus:ring-ncyan/40 transition-all"
+                ></textarea>
+              </div>
+
+              <!-- Inline Confirmation / Validation Feedback -->
+              <div id="contact-status" role="status" aria-live="polite" class="hidden p-4 rounded-2xl font-mono text-xs sm:text-sm font-semibold transition-all"></div>
+
+              <button
+                type="submit"
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-2xl bg-gradient-to-r from-blue-600 via-pink-600 to-amber-500 dark:from-ncyan dark:via-nviolet dark:to-nmagenta text-white dark:text-atelier-950 font-bold text-sm shadow-[0_0_24px_rgba(255,46,147,0.35)] hover:shadow-[0_0_32px_rgba(0,245,212,0.5)] hover:-translate-y-0.5 transition-all cursor-pointer"
+              >
+                <span>Send Message</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path>
+                </svg>
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer with Back-to-Top Button -->
+  <footer class="border-t border-blue-600/15 dark:border-ncyan/15 atelier-glass py-8 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+      <p>
+        Designed &amp; Engineered by <strong class="font-semibold text-vellum-ink dark:text-white">Parisha Thanki</strong> &mdash; <span class="font-mono text-teal-700 dark:text-ncyan">Tech &times; Art Portfolio</span>.
+      </p>
+      <a
+        href="#top"
+        class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-teal-600/35 dark:border-ncyan/45 atelier-glass font-mono text-xs font-bold text-vellum-ink dark:text-ncyan hover:border-pink-600 dark:hover:border-nmagenta hover:shadow-[0_0_16px_rgba(0,245,212,0.35)] transition-all"
+      >
+        <span>Back to Top</span>
+        <svg class="w-3.5 h-3.5 text-pink-600 dark:text-nmagenta" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"></path>
+        </svg>
+      </a>
+    </div>
+  </footer>
+
+  <!-- Floating Neon Toast Notification (Zero alert() usage) -->
+  <div
+    id="atelier-toast"
+    role="status"
+    aria-live="polite"
+    class="fixed bottom-6 right-6 z-[80] translate-y-20 opacity-0 pointer-events-none transition-all duration-300 px-5 py-3.5 rounded-2xl bg-atelier-950/95 text-white border border-ncyan/60 shadow-[0_0_28px_rgba(0,245,212,0.45)] backdrop-blur-xl flex items-center gap-3 font-mono text-xs sm:text-sm"
+  >
+    <span class="w-2.5 h-2.5 rounded-full bg-ncyan shadow-[0_0_10px_#00F5D4]"></span>
+    <span id="atelier-toast-text">Notification ready.</span>
+  </div>
+
+  <!-- ==================== CYBER-ATELIER INTERACTIVE ENGINE ==================== -->
+  <script>
+    let toastTimer = null;
+
+    /**
+     * GLOBAL HELPER: FLOATING NEON TOAST NOTIFICATION
+     */
+    function showAtelierToast(message) {
+      try {
+        const toast = document.getElementById('atelier-toast');
+        const toastText = document.getElementById('atelier-toast-text');
+        if (!toast || !toastText) return;
+
+        toastText.textContent = message;
+        toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+        toast.classList.add('translate-y-0', 'opacity-100');
+
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () {
+          toast.classList.remove('translate-y-0', 'opacity-100');
+          toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+        }, 3200);
+      } catch (err) {
+        console.error('Toast notification error:', err);
+      }
+    }
+
+    /**
+     * GLOBAL HELPER: IFRAME-SAFE CLIPBOARD COPY
+     */
+    function copyStringToClipboard(text) {
+      try {
+        const tempInput = document.createElement('textarea');
+        tempInput.value = text;
+        tempInput.setAttribute('readonly', '');
+        tempInput.style.position = 'fixed';
+        tempInput.style.opacity = '0';
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+      } catch (err) {
+        console.error('Clipboard copy error:', err);
+      }
+    }
+
+    /**
+     * 1. THEME SWITCHER (NEON DARK / GALLERY LIGHT PERSISTENCE)
+     */
+    function initThemeSwitcher() {
+      try {
+        const toggleBtn = document.getElementById('theme-toggle');
+        const themeLabel = document.getElementById('theme-label');
+        const htmlEl = document.documentElement;
+
+        function syncThemeLabel() {
+          const isDark = htmlEl.classList.contains('dark');
+          if (themeLabel) {
+            themeLabel.textContent = isDark ? 'Neon Dark' : 'Gallery Light';
+          }
+        }
+
+        syncThemeLabel();
+
+        if (toggleBtn) {
+          toggleBtn.addEventListener('click', function () {
+            const isDark = htmlEl.classList.toggle('dark');
+            try {
+              localStorage.setItem('pt-cyber-atelier-theme', isDark ? 'dark' : 'light');
+            } catch (e) {
+              // Ignore storage restrictions in sandboxed environments
+            }
+            syncThemeLabel();
+          });
+        }
+      } catch (err) {
+        console.error('Theme switcher error:', err);
+      }
+    }
+
+    /**
+     * 2. SPATIAL EFFECTS (SCROLL PROGRESS BAR, CURSOR AURA & 3D CARD SPECULAR TILT)
+     */
+    function initSpatialEffects() {
+      try {
+        const progressBar = document.getElementById('scroll-progress');
+        const cursorAura = document.getElementById('cursor-aura');
+        const tiltCards = document.querySelectorAll('.tilt-card');
+
+        // Top Neon Scroll Progress Bar
+        window.addEventListener('scroll', function () {
+          if (!progressBar) return;
+          const scrollTop = window.scrollY || document.documentElement.scrollTop;
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const pct = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
+          progressBar.style.width = pct.toFixed(1) + '%';
+        }, { passive: true });
+
+        // Custom Neon Cursor Aura
+        if (cursorAura) {
+          window.addEventListener('mousemove', function (e) {
+            cursorAura.style.left = e.clientX + 'px';
+            cursorAura.style.top = e.clientY + 'px';
+          }, { passive: true });
+        }
+
+        // 3D Perspective Tilt & Cursor-Tracking Specular Rim on Cards
+        tiltCards.forEach(function (card) {
+          card.addEventListener('mousemove', function (e) {
+            const rect = card.getBoundingClientRect();
+            const relX = e.clientX - rect.left;
+            const relY = e.clientY - rect.top;
+            card.style.setProperty('--mx', relX + 'px');
+            card.style.setProperty('--my', relY + 'px');
+
+            const normX = (relX / rect.width - 0.5) * 2;
+            const normY = (relY / rect.height - 0.5) * 2;
+            const rotateY = (normX * 3.5).toFixed(2);
+            const rotateX = (-normY * 3.5).toFixed(2);
+            card.style.transform = 'perspective(900px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg)';
+          });
+
+          card.addEventListener('mouseleave', function () {
+            card.style.transform = '';
+          });
+        });
+      } catch (err) {
+        console.error('Spatial effects error:', err);
+      }
+    }
+
+    /**
+     * 3. MOBILE NAVIGATION DRAWER
+     */
+    function initMobileNav() {
+      try {
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const iconOpen = document.getElementById('icon-menu-open');
+        const iconClose = document.getElementById('icon-menu-close');
+        const navLinks = document.querySelectorAll('.mobile-nav-link');
+
+        if (!menuBtn || !mobileMenu) return;
+
+        function setMenuOpen(open) {
+          menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+          mobileMenu.classList.toggle('hidden', !open);
+          if (iconOpen) iconOpen.classList.toggle('hidden', open);
+          if (iconClose) iconClose.classList.toggle('hidden', !open);
+        }
+
+        menuBtn.addEventListener('click', function () {
+          const isOpen = !mobileMenu.classList.contains('hidden');
+          setMenuOpen(!isOpen);
+        });
+
+        navLinks.forEach(function (link) {
+          link.addEventListener('click', function () {
+            setMenuOpen(false);
+          });
+        });
+      } catch (err) {
+        console.error('Mobile nav error:', err);
+      }
+    }
+
+    /**
+     * 4. PORTRAIT VIEWFINDER FALLBACK & LIVE LOCAL PHOTO PREVIEW
+     */
+    function initPortraitViewfinder() {
+      try {
+        const imgEl = document.getElementById('profile-img');
+        const fallbackEl = document.getElementById('profile-fallback');
+        const previewBtn = document.getElementById('preview-photo-btn');
+        const fileInput = document.getElementById('portrait-file-input');
+        const statusTag = document.getElementById('portrait-status-tag');
+
+        if (!imgEl || !fallbackEl) return;
+
+        function showFallback() {
+          imgEl.classList.add('hidden');
+          fallbackEl.classList.remove('hidden');
+        }
+
+        function showImage() {
+          fallbackEl.classList.add('hidden');
+          imgEl.classList.remove('hidden');
+        }
+
+        imgEl.addEventListener('error', showFallback);
+        imgEl.addEventListener('load', showImage);
+
+        if (imgEl.complete && imgEl.naturalWidth === 0) {
+          showFallback();
+        }
+
+        if (previewBtn && fileInput) {
+          previewBtn.addEventListener('click', function () {
+            fileInput.click();
+          });
+
+          fileInput.addEventListener('change', function (e) {
+            const file = e.target.files && e.target.files[0];
+            if (!file) return;
+
+            const objectUrl = URL.createObjectURL(file);
+            imgEl.src = objectUrl;
+            showImage();
+
+            if (statusTag) {
+              statusTag.textContent = 'SRC: ' + file.name;
+            }
+            showAtelierToast('Loaded photo preview: ' + file.name);
+          });
+        }
+      } catch (err) {
+        console.error('Portrait viewfinder error:', err);
+      }
+    }
+
+    /**
+     * 5. HERO DUAL-REALITY CANVAS (2 SOFT LOW-OPACITY SILK RIBBONS + 14 AIRY CONSTELLATION NODES)
+     */
+    function initDualRealityCanvas() {
+      try {
+        const canvas = document.getElementById('dual-reality-canvas');
+        const hero = document.getElementById('hero-section');
+        const modeBtns = document.querySelectorAll('.canvas-mode-btn');
+        const coordTelemetry = document.getElementById('hero-cursor-telemetry');
+
+        if (!canvas || !hero) return;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        let width = 0;
+        let height = 0;
+        let dpr = Math.min(window.devicePixelRatio || 1, 2);
+        let frame = 0;
+        let canvasMode = 'fusion'; // 'fusion' | 'brush' | 'neural'
+
+        const pointer = { x: 420, y: 260, active: false };
+        let nodes = [];
+
+        // 2 delicate, wide, soft-glowing silk/watercolor ribbons with low opacity (0.13 - 0.14)
+        const brushstrokes = [
+          { color: 'rgba(255, 46, 147, 0.14)', glow: 'rgba(255, 46, 147, 0.35)', amp: 36, freq: 0.0021, speed: 0.011, yFrac: 0.34, width: 18 },
+          { color: 'rgba(0, 245, 212, 0.13)', glow: 'rgba(0, 245, 212, 0.35)', amp: 34, freq: 0.0024, speed: -0.010, yFrac: 0.68, width: 16 },
+        ];
+
+        const nodeColors = ['#00F5D4', '#FF2E93', '#9D4EDD', '#FFB703'];
+
+        function spawnNodes() {
+          // Keep constellation sparse and breathable with 14 softly glowing nodes
+          const total = 14;
+          nodes = [];
+          for (let i = 0; i < total; i++) {
+            nodes.push({
+              x: Math.random() * width,
+              y: Math.random() * height,
+              vx: (Math.random() - 0.5) * 0.42,
+              vy: (Math.random() - 0.5) * 0.42,
+              r: 2.0 + Math.random() * 1.5,
+              phase: Math.random() * Math.PI * 2,
+              color: nodeColors[i % nodeColors.length],
+            });
+          }
+        }
+
+        function resizeHeroCanvas() {
+          const rect = hero.getBoundingClientRect();
+          width = rect.width;
+          height = rect.height;
+          dpr = Math.min(window.devicePixelRatio || 1, 2);
+          canvas.width = Math.floor(width * dpr);
+          canvas.height = Math.floor(height * dpr);
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          spawnNodes();
+        }
+
+        // Mode Switcher ('Mode: Fusion | Brush | Neural')
+        modeBtns.forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            canvasMode = btn.getAttribute('data-canvas-mode') || 'fusion';
+            modeBtns.forEach(function (b) {
+              b.className = 'canvas-mode-btn px-3 py-1 rounded-full text-[11px] font-semibold transition-all cursor-pointer';
+              if (b === btn) {
+                b.classList.add('bg-gradient-to-r', 'from-ncyan', 'to-nmagenta', 'text-atelier-950', 'font-bold', 'shadow-[0_0_12px_rgba(0,245,212,0.4)]');
+              } else {
+                b.classList.add('text-slate-700', 'dark:text-slate-300', 'hover:text-ncyan');
+              }
+            });
+          });
+        });
+
+        hero.addEventListener('mousemove', function (e) {
+          const rect = hero.getBoundingClientRect();
+          pointer.x = e.clientX - rect.left;
+          pointer.y = e.clientY - rect.top;
+          pointer.active = true;
+          if (coordTelemetry) {
+            coordTelemetry.textContent = 'COORD: [ ' + Math.round(pointer.x) + ' , ' + Math.round(pointer.y) + ' ]';
+          }
+        }, { passive: true });
+
+        hero.addEventListener('mouseleave', function () {
+          pointer.active = false;
+        });
+
+        hero.addEventListener('touchmove', function (e) {
+          if (e.touches && e.touches[0]) {
+            const rect = hero.getBoundingClientRect();
+            pointer.x = e.touches[0].clientX - rect.left;
+            pointer.y = e.touches[0].clientY - rect.top;
+            pointer.active = true;
+          }
+        }, { passive: true });
+
+        window.addEventListener('resize', resizeHeroCanvas);
+        resizeHeroCanvas();
+
+        function animateDualReality() {
+          ctx.clearRect(0, 0, width, height);
+          frame += 1;
+
+          // 1. Two Delicate Low-Opacity Silk / Watercolor Ribbons ('fusion' & 'brush')
+          if (canvasMode === 'fusion' || canvasMode === 'brush') {
+            const brushMultiplier = canvasMode === 'brush' ? 1.3 : 1.0;
+            brushstrokes.forEach(function (b, idx) {
+              ctx.save();
+              ctx.beginPath();
+              const baseY = height * b.yFrac;
+              ctx.moveTo(0, baseY);
+
+              for (let x = 0; x <= width + 36; x += 36) {
+                const cursorBend = pointer.active
+                  ? Math.max(0, 1 - Math.abs(x - pointer.x) / 260) * ((pointer.y - baseY) * 0.12)
+                  : 0;
+                const y =
+                  baseY +
+                  Math.sin(x * b.freq + frame * b.speed + idx) * b.amp +
+                  Math.cos(x * b.freq * 0.6 - frame * b.speed * 0.9) * (b.amp * 0.38) +
+                  cursorBend;
+                ctx.lineTo(x, y);
+              }
+
+              ctx.strokeStyle = b.color;
+              ctx.lineWidth = b.width * brushMultiplier;
+              ctx.lineCap = 'round';
+              ctx.shadowColor = b.glow;
+              ctx.shadowBlur = 14;
+              ctx.stroke();
+              ctx.restore();
+            });
+          }
+
+          // 2. Sparse 14-Node Constellation with Faint Hairline Connections ('fusion' & 'neural')
+          if (canvasMode === 'fusion' || canvasMode === 'neural') {
+            const linkDist = canvasMode === 'neural' ? 150 : 130;
+            const maxLineAlpha = canvasMode === 'neural' ? 0.16 : 0.12;
+            const cursorRadius = 180;
+
+            for (let i = 0; i < nodes.length; i++) {
+              const n = nodes[i];
+              n.x += n.vx;
+              n.y += n.vy;
+
+              if (n.x < 0 || n.x > width) n.vx *= -1;
+              if (n.y < 0 || n.y > height) n.vy *= -1;
+
+              if (pointer.active) {
+                const dx = pointer.x - n.x;
+                const dy = pointer.y - n.y;
+                const dist = Math.hypot(dx, dy);
+                if (dist > 20 && dist < cursorRadius) {
+                  n.x += (dx / dist) * 0.45;
+                  n.y += (dy / dist) * 0.45;
+                }
+              }
+            }
+
+            for (let i = 0; i < nodes.length; i++) {
+              const a = nodes[i];
+
+              for (let j = i + 1; j < nodes.length; j++) {
+                const b = nodes[j];
+                const dAB = Math.hypot(a.x - b.x, a.y - b.y);
+                if (dAB < linkDist) {
+                  ctx.beginPath();
+                  ctx.moveTo(a.x, a.y);
+                  ctx.lineTo(b.x, b.y);
+                  ctx.strokeStyle = 'rgba(0, 245, 212, ' + (maxLineAlpha * (1 - dAB / linkDist)).toFixed(3) + ')';
+                  ctx.lineWidth = 0.9;
+                  ctx.stroke();
+                }
+              }
+
+              const pulseR = a.r + Math.sin(frame * 0.045 + a.phase) * 0.5;
+              ctx.save();
+              ctx.globalAlpha = 0.68;
+              ctx.beginPath();
+              ctx.arc(a.x, a.y, Math.max(1.3, pulseR), 0, Math.PI * 2);
+              ctx.fillStyle = a.color;
+              ctx.shadowColor = a.color;
+              ctx.shadowBlur = 8;
+              ctx.fill();
+              ctx.restore();
+            }
+          }
+
+          requestAnimationFrame(animateDualReality);
+        }
+
+        animateDualReality();
+      } catch (err) {
+        console.error('Dual-Reality Canvas error:', err);
+      }
+    }
+
+    /**
+     * 6. SHARE PURCHASE EXECUTION TIME PREDICTOR ("ALGORITHMIC TRADING HUD") + LIVE DUAL WAVEFORM
+     */
+    function initAlgorithmicTradingHUD() {
+      try {
+        const inputShares = document.getElementById('input-shares');
+        const inputVix = document.getElementById('input-vix');
+        const inputBps = document.getElementById('input-bps');
+        const liquidityPills = document.querySelectorAll('.liquidity-pill');
+        const resetBtn = document.getElementById('hud-reset-btn');
+
+        const readoutShares = document.getElementById('readout-shares');
+        const readoutVix = document.getElementById('readout-vix');
+        const readoutBps = document.getElementById('readout-bps');
+        const readoutTier = document.getElementById('readout-tier');
+
+        const secondsDisplay = document.getElementById('hud-seconds-display');
+        const ciDisplay = document.getElementById('hud-ci-display');
+        const statusPill = document.getElementById('hud-status-pill');
+        const waveTelemetryTag = document.getElementById('wave-telemetry-tag');
+
+        const segVolume = document.getElementById('seg-volume');
+        const segVolatility = document.getElementById('seg-volatility');
+        const segSpread = document.getElementById('seg-spread');
+        const segLiquidity = document.getElementById('seg-liquidity');
+
+        const lblVolume = document.getElementById('lbl-volume');
+        const lblVolatility = document.getElementById('lbl-volatility');
+        const lblSpread = document.getElementById('lbl-spread');
+        const lblLiquidity = document.getElementById('lbl-liquidity');
+
+        const waveCanvas = document.getElementById('predictor-waveform-canvas');
+
+        if (!inputShares || !inputVix || !inputBps) return;
+
+        let activeTier = 'large';
+        let liveSeconds = 0.64;
+        let liveVix = 16;
+        let liveShares = 450;
+
+        const tierSpecs = {
+          large: {
+            name: 'Large-Cap',
+            baseSec: 0.14,
+            volScale: 1.0,
+            ciPad: 0.03,
+            btnStyle: ['bg-gradient-to-r', 'from-ncyan', 'to-blue-500', 'text-atelier-950', 'shadow-[0_0_15px_rgba(0,245,212,0.4)]'],
+          },
+          mid: {
+            name: 'Mid-Cap',
+            baseSec: 0.62,
+            volScale: 1.35,
+            ciPad: 0.12,
+            btnStyle: ['bg-gradient-to-r', 'from-nviolet', 'to-ncyan', 'text-white', 'shadow-[0_0_15px_rgba(157,78,221,0.4)]'],
+          },
+          small: {
+            name: 'Small-Cap',
+            baseSec: 1.58,
+            volScale: 1.85,
+            ciPad: 0.28,
+            btnStyle: ['bg-gradient-to-r', 'from-nmagenta', 'to-namber', 'text-white', 'shadow-[0_0_15px_rgba(255,46,147,0.4)]'],
+          },
+        };
+
+        function styleLiquidityButtons() {
+          liquidityPills.forEach(function (btn) {
+            const key = btn.getAttribute('data-liquidity');
+            btn.className = 'liquidity-pill py-2.5 px-3 rounded-xl font-mono text-xs sm:text-sm font-bold transition-all cursor-pointer';
+            if (key === activeTier) {
+              btn.classList.add(...tierSpecs[key].btnStyle);
+            } else {
+              btn.classList.add('text-slate-700', 'dark:text-slate-300', 'hover:text-ncyan');
+            }
+          });
+          if (readoutTier) readoutTier.textContent = tierSpecs[activeTier].name;
+        }
+
+        function computeExecutionLatency() {
+          const shares = Number(inputShares.value);
+          const vix = Number(inputVix.value);
+          const bps = Number(inputBps.value);
+          const spec = tierSpecs[activeTier];
+
+          liveShares = shares;
+          liveVix = vix;
+
+          readoutShares.textContent = shares.toLocaleString() + ' shares';
+          readoutVix.textContent = vix.toFixed(1) + ' VIX';
+          readoutBps.textContent = bps + ' bps';
+
+          // Calibrated microstructure regression components
+          // Default (450 shares, VIX 16, 6 bps, Large-Cap) yields ~0.64 s (± 0.11 s)
+          const compVolume = Math.pow(shares / 1000, 0.72) * 0.29 * spec.volScale;
+          const compVolatility = ((vix - 8) / 55) * 1.25 * (activeTier === 'small' ? 1.25 : 1.0);
+          const compSpread = (bps / 50) * 1.20 * (activeTier === 'small' ? 1.2 : 1.0);
+          const compLiquidity = spec.baseSec;
+
+          const predictedSec = compVolume + compVolatility + compSpread + compLiquidity;
+          liveSeconds = predictedSec;
+
+          const plusMinus = 0.06 + (vix / 65) * 0.18 + spec.ciPad + (shares / 10000) * 0.14;
+
+          secondsDisplay.textContent = predictedSec.toFixed(2) + ' s';
+          ciDisplay.textContent = '\u00B1 ' + plusMinus.toFixed(2) + ' s';
+
+          // Dynamic status pill ('ULTRA-FAST FILL', 'STANDARD EXECUTION', or 'HIGH LATENCY QUEUE')
+          if (predictedSec < 1.35) {
+            secondsDisplay.className = 'font-mono text-5xl sm:text-6xl font-extrabold tracking-tight text-ncyan drop-shadow-[0_0_22px_rgba(0,245,212,0.6)]';
+            statusPill.textContent = 'ULTRA-FAST FILL';
+            statusPill.className = 'px-3.5 py-1 rounded-full font-mono text-xs font-bold bg-ncyan/15 text-ncyan border border-ncyan/45 shadow-[0_0_12px_rgba(0,245,212,0.3)]';
+            if (waveTelemetryTag) waveTelemetryTag.textContent = 'FREQ: HIGH // AMP: TIGHT';
+          } else if (predictedSec <= 2.95) {
+            secondsDisplay.className = 'font-mono text-5xl sm:text-6xl font-extrabold tracking-tight text-namber drop-shadow-[0_0_22px_rgba(255,183,3,0.55)]';
+            statusPill.textContent = 'STANDARD EXECUTION';
+            statusPill.className = 'px-3.5 py-1 rounded-full font-mono text-xs font-bold bg-namber/15 text-namber border border-namber/45 shadow-[0_0_12px_rgba(255,183,3,0.3)]';
+            if (waveTelemetryTag) waveTelemetryTag.textContent = 'FREQ: BALANCED // AMP: MOD';
+          } else {
+            secondsDisplay.className = 'font-mono text-5xl sm:text-6xl font-extrabold tracking-tight text-nmagenta drop-shadow-[0_0_22px_rgba(255,46,147,0.6)]';
+            statusPill.textContent = 'HIGH LATENCY QUEUE';
+            statusPill.className = 'px-3.5 py-1 rounded-full font-mono text-xs font-bold bg-nmagenta/20 text-nmagenta border border-nmagenta/50 shadow-[0_0_14px_rgba(255,46,147,0.35)]';
+            if (waveTelemetryTag) waveTelemetryTag.textContent = 'FREQ: WIDE // AMP: HIGH';
+          }
+
+          // 4-segment neon attribution bar
+          const sum = compVolume + compVolatility + compSpread + compLiquidity;
+          const pVol = Math.round((compVolume / sum) * 100);
+          const pVix = Math.round((compVolatility / sum) * 100);
+          const pBps = Math.round((compSpread / sum) * 100);
+          const pLiq = Math.max(1, 100 - (pVol + pVix + pBps));
+
+          segVolume.style.width = pVol + '%';
+          segVolatility.style.width = pVix + '%';
+          segSpread.style.width = pBps + '%';
+          segLiquidity.style.width = pLiq + '%';
+
+          lblVolume.textContent = pVol + '%';
+          lblVolatility.textContent = pVix + '%';
+          lblSpread.textContent = pBps + '%';
+          lblLiquidity.textContent = pLiq + '%';
+        }
+
+        liquidityPills.forEach(function (pill) {
+          pill.addEventListener('click', function () {
+            activeTier = pill.getAttribute('data-liquidity') || 'large';
+            styleLiquidityButtons();
+            computeExecutionLatency();
+          });
+        });
+
+        inputShares.addEventListener('input', computeExecutionLatency);
+        inputVix.addEventListener('input', computeExecutionLatency);
+        inputBps.addEventListener('input', computeExecutionLatency);
+
+        if (resetBtn) {
+          resetBtn.addEventListener('click', function () {
+            activeTier = 'large';
+            inputShares.value = '450';
+            inputVix.value = '16';
+            inputBps.value = '6';
+            styleLiquidityButtons();
+            computeExecutionLatency();
+          });
+        }
+
+        styleLiquidityButtons();
+        computeExecutionLatency();
+
+        // Live Animated HTML5 Canvas Waveform: Algorithmic Order-Book Curve Intertwined with Harmonic Neon Paint Wave
+        if (waveCanvas) {
+          const wCtx = waveCanvas.getContext('2d');
+          let wWidth = 0;
+          let wHeight = 0;
+          let phase = 0;
+
+          function resizeWaveCanvas() {
+            const parent = waveCanvas.parentElement;
+            if (!parent) return;
+            const rect = parent.getBoundingClientRect();
+            const ratio = Math.min(window.devicePixelRatio || 1, 2);
+            wWidth = rect.width;
+            wHeight = rect.height;
+            waveCanvas.width = Math.floor(wWidth * ratio);
+            waveCanvas.height = Math.floor(wHeight * ratio);
+            wCtx.setTransform(ratio, 0, 0, ratio, 0, 0);
+          }
+
+          window.addEventListener('resize', resizeWaveCanvas);
+          resizeWaveCanvas();
+
+          function renderPredictorWave() {
+            if (wWidth > 0 && wHeight > 0 && wCtx) {
+              wCtx.clearRect(0, 0, wWidth, wHeight);
+              const midY = wHeight / 2;
+
+              // Subtle horizon line
+              wCtx.beginPath();
+              wCtx.moveTo(0, midY);
+              wCtx.lineTo(wWidth, midY);
+              wCtx.strokeStyle = 'rgba(157, 78, 221, 0.25)';
+              wCtx.lineWidth = 1;
+              wCtx.stroke();
+
+              // Frequency & Amplitude driven live by slider inputs
+              const freq = 0.025 + (liveVix / 65) * 0.065;
+              const amp = Math.min(wHeight * 0.36, 10 + (liveVix / 65) * 16 + (liveShares / 10000) * 10);
+              const speed = 0.05 + (1 / Math.max(0.4, liveSeconds)) * 0.04;
+              phase += speed;
+
+              // Wave 1: Harmonic Neon Magenta Paint Wave
+              wCtx.save();
+              wCtx.beginPath();
+              for (let x = 0; x <= wWidth; x += 3) {
+                const env = Math.sin((x / wWidth) * Math.PI);
+                const y = midY + Math.sin(x * freq * 0.85 - phase * 0.8) * amp * 0.92 * env;
+                if (x === 0) wCtx.moveTo(x, y);
+                else wCtx.lineTo(x, y);
+              }
+              wCtx.strokeStyle = '#FF2E93';
+              wCtx.lineWidth = 3;
+              wCtx.shadowColor = '#FF2E93';
+              wCtx.shadowBlur = 12;
+              wCtx.stroke();
+              wCtx.restore();
+
+              // Wave 2: Algorithmic Order-Book Execution Curve (Electric Cyan)
+              wCtx.save();
+              wCtx.beginPath();
+              for (let x = 0; x <= wWidth; x += 3) {
+                const env = Math.sin((x / wWidth) * Math.PI);
+                const y =
+                  midY +
+                  (Math.sin(x * freq + phase) * 0.72 + Math.cos(x * freq * 1.9 + phase * 1.4) * 0.28) *
+                    amp *
+                    env;
+                if (x === 0) wCtx.moveTo(x, y);
+                else wCtx.lineTo(x, y);
+              }
+              wCtx.strokeStyle = '#00F5D4';
+              wCtx.lineWidth = 2.4;
+              wCtx.shadowColor = '#00F5D4';
+              wCtx.shadowBlur = 12;
+              wCtx.stroke();
+              wCtx.restore();
+            }
+
+            requestAnimationFrame(renderPredictorWave);
+          }
+
+          renderPredictorWave();
+        }
+      } catch (err) {
+        console.error('Algorithmic Trading HUD error:', err);
+      }
+    }
+
+    /**
+     * 7. FILTERABLE SHOWCASE ('All (4)', 'Tech & Data (2)', 'Art & Brand (2)') + CLICKABLE ARTWORK HEX SWATCHES
+     */
+    function initShowcaseAndArtworkSwatches() {
+      try {
+        // Filter Tabs
+        const filterButtons = document.querySelectorAll('.showcase-filter-btn');
+        const cards = document.querySelectorAll('.showcase-card');
+
+        const activeFilterClasses = [
+          'bg-gradient-to-r',
+          'from-ncyan',
+          'via-nviolet',
+          'to-nmagenta',
+          'text-atelier-950',
+          'dark:text-white',
+          'font-bold',
+          'shadow-[0_0_16px_rgba(0,245,212,0.35)]',
+        ];
+
+        filterButtons.forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            const target = btn.getAttribute('data-showcase-filter');
+
+            filterButtons.forEach(function (b) {
+              b.className = 'showcase-filter-btn px-4 py-2 rounded-xl font-mono text-xs sm:text-sm font-semibold transition-all cursor-pointer';
+              if (b === btn) {
+                b.classList.add(...activeFilterClasses);
+              } else {
+                b.classList.add('text-slate-700', 'dark:text-slate-300', 'hover:text-ncyan');
+              }
+            });
+
+            cards.forEach(function (card) {
+              const cat = card.getAttribute('data-showcase-cat');
+              const show = target === 'all' || cat === target;
+              if (show) {
+                card.classList.remove('hidden');
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(12px)';
+                requestAnimationFrame(function () {
+                  card.style.opacity = '1';
+                  card.style.transform = 'translateY(0)';
+                });
+              } else {
+                card.classList.add('hidden');
+              }
+            });
+          });
+        });
+
+        // Interactive Clickable Hex Color Swatches on 'Nocturne Seascape' Card
+        const swatchButtons = document.querySelectorAll('.artwork-swatch-btn');
+        const swatchReadout = document.getElementById('active-swatch-readout');
+
+        swatchButtons.forEach(function (swBtn) {
+          swBtn.addEventListener('click', function () {
+            const hex = swBtn.getAttribute('data-hex') || '#F8FAFC';
+            const pigmentName = swBtn.getAttribute('data-name') || 'Pigment';
+
+            swatchButtons.forEach(function (other) {
+              other.classList.remove('border-2', 'border-ncyan', 'shadow-[0_0_10px_rgba(0,245,212,0.3)]');
+              other.classList.add('border', 'border-slate-300/60', 'dark:border-white/15');
+            });
+
+            swBtn.classList.remove('border', 'border-slate-300/60', 'dark:border-white/15');
+            swBtn.classList.add('border-2', 'border-ncyan', 'shadow-[0_0_10px_rgba(0,245,212,0.3)]');
+
+            if (swatchReadout) {
+              swatchReadout.textContent = hex + ' (' + pigmentName + ')';
+            }
+
+            copyStringToClipboard(hex);
+            showAtelierToast('Copied pigment ' + hex + ' (' + pigmentName + ') to clipboard!');
+          });
+        });
+      } catch (err) {
+        console.error('Showcase/Swatch error:', err);
+      }
+    }
+
+    /**
+     * 8. ONE-CLICK COPY EMAIL ('parisha.thanki@example.com') + VALIDATED CONTACT FORM
+     */
+    function initContactHub() {
+      try {
+        const copyBtn = document.getElementById('copy-email-btn');
+        const copyLabel = document.getElementById('copy-email-label');
+        const emailText = document.getElementById('email-text');
+
+        if (copyBtn && emailText) {
+          copyBtn.addEventListener('click', function () {
+            const emailVal = emailText.textContent.trim();
+            copyStringToClipboard(emailVal);
+            if (copyLabel) copyLabel.textContent = 'Copied!';
+            showAtelierToast('Copied ' + emailVal + ' to clipboard!');
+            setTimeout(function () {
+              if (copyLabel) copyLabel.textContent = 'Copy Email';
+            }, 2800);
+          });
+        }
+
+        const form = document.getElementById('contact-form');
+        const statusBox = document.getElementById('contact-status');
+
+        if (form && statusBox) {
+          form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const nameVal = document.getElementById('sender-name').value.trim();
+            const emailVal = document.getElementById('sender-email').value.trim();
+            const topicVal = document.getElementById('sender-topic').value.trim();
+            const msgVal = document.getElementById('sender-message').value.trim();
+
+            const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal);
+
+            if (!nameVal || !emailValid || !topicVal || !msgVal) {
+              statusBox.textContent = 'Please complete all fields with a valid email address.';
+              statusBox.className = 'p-4 rounded-2xl font-mono text-xs sm:text-sm font-semibold bg-nmagenta/15 text-pink-800 dark:text-nmagenta border border-nmagenta/45';
+              statusBox.classList.remove('hidden');
+              return;
+            }
+
+            statusBox.textContent =
+              'Transmission received! Thank you, ' +
+              nameVal +
+              ' — Parisha will reply to ' +
+              emailVal +
+              ' regarding "' +
+              topicVal +
+              '".';
+            statusBox.className =
+              'p-4 rounded-2xl font-mono text-xs sm:text-sm font-semibold bg-ncyan/15 text-teal-900 dark:text-ncyan border border-ncyan/45 shadow-[0_0_18px_rgba(0,245,212,0.18)]';
+            statusBox.classList.remove('hidden');
+
+            showAtelierToast('Message sent to Parisha Thanki!');
+            form.reset();
+          });
+        }
+      } catch (err) {
+        console.error('Contact hub error:', err);
+      }
+    }
+
+    /**
+     * 9. SCROLL-TRIGGERED STAGGERED REVEAL ANIMATIONS VIA INTERSECTIONOBSERVER
+     */
+    function initScrollReveals() {
+      try {
+        const items = document.querySelectorAll('.reveal-item');
+        if (!('IntersectionObserver' in window)) {
+          items.forEach(function (el) { el.classList.add('is-visible'); });
+          return;
+        }
+
+        const observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+
+        items.forEach(function (item) {
+          observer.observe(item);
+        });
+      } catch (err) {
+        console.error('Scroll reveal error:', err);
+      }
+    }
+
+    /**
+     * INITIALIZE ALL CYBER-ATELIER MODULES ON WINDOW LOAD
+     */
+    window.onload = function () {
+      initThemeSwitcher();
+      initSpatialEffects();
+      initMobileNav();
+      initPortraitViewfinder();
+      initDualRealityCanvas();
+      initAlgorithmicTradingHUD();
+      initShowcaseAndArtworkSwatches();
+      initContactHub();
+      initScrollReveals();
+    };
+  </script>
+</body>
+</html>
